@@ -1,0 +1,13 @@
+{
+  "name": "pi-colab-root",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "site"
+  ],
+  "scripts": {
+    "build": "npm run build --prefix site",
+    "lint": "npm run lint --prefix site",
+    "start": "npm run start --prefix site"
+  }
+}

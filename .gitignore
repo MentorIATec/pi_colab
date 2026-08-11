@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+site/node_modules/
+
+# Next.js / Vinext build outputs
+.next/
+site/.next/
+.vinext/
+site/.vinext/
+dist/
+site/dist/
+out/
+site/out/
+.wrangler/
+site/.wrangler/
+
+# System / OS
+.DS_Store
+
+# Temporary files / cache
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+.env*

@@ -21,19 +21,16 @@ test("server-renders the final Spanish landing page", async () => {
   const html = await response.text();
   assert.match(html, /<html[^>]*lang="es"/i);
   assert.match(html, /<title>Antes del destino/i);
-  assert.match(html, /Antes del destino, diseña tu siguiente paso/);
-  assert.match(html, /30 minutos/);
+  assert.match(html, /Planifica tu experiencia internacional con evidencia/);
+  assert.match(html, /Mi Ruta Internacional/);
   assert.match(html, /href="\/pasaporte"/);
-  assert.match(html, /href="\/facilitacion"/);
+  assert.match(html, /href="\/guia-mitec"/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
 for (const [path, expected] of [
-  ["/registro", "Guion para el formulario de interés"],
-  ["/preparacion", "Mi punto de partida"],
-  ["/pasaporte", "Mi pasaporte de decisión"],
-  ["/caso", "Caso: decidir sin inventar"],
-  ["/facilitacion", "Una conversación breve que sí deja ruta"],
+  ["/pasaporte", "Pasaporte de Decisión"],
+  ["/guia-mitec", "Guía de Navegación MiTec"],
 ]) {
   test(`server-renders ${path}`, async () => {
     const response = await render(path);

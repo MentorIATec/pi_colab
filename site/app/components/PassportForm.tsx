@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const storageKey = "antes-destino-pasaporte-mentoria-v1";
+const storageKey = "antes-destino-pasaporte-mentoria-v2";
 const sharePointUrl =
   "https://tecmx.sharepoint.com/sites/MiExperienciaInternacional/SitePages/Home.aspx?csf=1&web=1&share=IQBGBxjko62qSL-F7-3GE9VvAea2muq5nupNF0SO4FEbkzU&e=aKUb7z&CID=70e9f9bf-fab2-4344-aaf8-a9ef0c4352ce";
 
@@ -10,57 +10,68 @@ const channels = [
   "Programas Internacionales",
   "Dirección de Programa",
   "Mentoría",
-  "Trabajo autónomo",
+  "Conversación con estudiantes",
+  "Exploración autónoma",
 ] as const;
 
-type ExportView = "full" | "pi" | "mentor";
+type Channel = (typeof channels)[number];
+
+const actionHints: Record<Channel, string[]> = {
+  "Programas Internacionales": [
+    "Llevar mi pregunta concreta a Programas Internacionales.",
+    "Confirmar dónde consultar requisitos, costos o apoyos vigentes.",
+    "Revisar el calendario y la ronda aplicable en la fuente oficial.",
+  ],
+  "Dirección de Programa": [
+    "Solicitar una reunión con mi Dirección de Programa.",
+    "Llevar dos planes de estudio para conversar sobre su pertinencia.",
+    "Preguntar qué criterios académicos conviene revisar antes de elegir.",
+  ],
+  Mentoría: [
+    "Comparar dos opciones usando los mismos criterios.",
+    "Conversar sobre la tensión principal de mi decisión.",
+    "Preparar la pregunta que llevaré a PI o Dirección de Programa.",
+  ],
+  "Conversación con estudiantes": [
+    "Conversar con alguien que haya vivido una experiencia internacional.",
+    "Preguntar por adaptación, vida cotidiana y aprendizajes.",
+    "Contrastar experiencias de más de un estudiante.",
+  ],
+  "Exploración autónoma": [
+    "Revisar los planes de estudio de dos o tres universidades.",
+    "Comparar enfoques académicos, no sólo ciudades.",
+    "Registrar la fuente y fecha de la información consultada.",
+  ],
+};
 
 type Passport = {
-  name: string;
-  studentId: string;
-  sessionDate: string;
-  startingQuestion: string;
-  expectedSupport: string;
-  desiredExperience: string;
-  missingOpportunity: string;
-  priority: string;
-  tension: string;
-  sourceConsulted: string;
-  understood: string;
-  unresolved: string;
-  focusedQuestion: string;
-  routes: string[];
-  routeContext: string;
+  question: string;
+  purpose: string;
+  priorities: string;
+  officialNotes: string;
+  routes: Channel[];
+  primaryRoute: Channel | "";
   nextAction: string;
   actionDate: string;
-  evidence: string;
   followUp: string;
+  name: string;
+  studentId: string;
 };
 
 type Draft = Omit<Passport, "name" | "studentId">;
 
-const today = () => new Date().toISOString().slice(0, 10);
-
 const emptyForm: Passport = {
-  name: "",
-  studentId: "",
-  sessionDate: today(),
-  startingQuestion: "",
-  expectedSupport: "",
-  desiredExperience: "",
-  missingOpportunity: "",
-  priority: "",
-  tension: "",
-  sourceConsulted: "",
-  understood: "",
-  unresolved: "",
-  focusedQuestion: "",
+  question: "",
+  purpose: "",
+  priorities: "",
+  officialNotes: "",
   routes: [],
-  routeContext: "",
+  primaryRoute: "",
   nextAction: "",
   actionDate: "",
-  evidence: "",
   followUp: "",
+  name: "",
+  studentId: "",
 };
 
 function draftFrom(form: Passport): Draft {
@@ -76,13 +87,11 @@ function display(value: string) {
 
 export function PassportForm() {
   const [form, setForm] = useState<Passport>(emptyForm);
-  const [ready, setReady] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
-  const [draftEnabled, setDraftEnabled] = useState(false);
-  const [lastSaved, setLastSaved] = useState<string>("");
+  const [ready, setReady] = useState(false);
+  const [lastSaved, setLastSaved] = useState("");
   const [exported, setExported] = useState(false);
-  const [exportView, setExportView] = useState<ExportView>("full");
-  const [shareMessage, setShareMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const saved = window.localStorage.getItem(storageKey);
@@ -97,7 +106,6 @@ export function PassportForm() {
     const timeout = window.setTimeout(() => {
       if (parsed) {
         setForm((current) => ({ ...current, ...parsed?.draft, name: "", studentId: "" }));
-        setDraftEnabled(true);
         setLastSaved(parsed.savedAt ?? "");
       }
       setReady(true);
@@ -106,259 +114,267 @@ export function PassportForm() {
   }, []);
 
   useEffect(() => {
-    if (!ready || !draftEnabled) return;
+    if (!ready) return;
     const savedAt = new Date().toISOString();
     window.localStorage.setItem(storageKey, JSON.stringify({ draft: draftFrom(form), savedAt }));
     const timeout = window.setTimeout(() => setLastSaved(savedAt), 0);
     return () => window.clearTimeout(timeout);
-  }, [form, ready, draftEnabled]);
+  }, [form, ready]);
 
-  const hasContent = useMemo(
-    () => Object.entries(form).some(([key, value]) => {
-      if (key === "sessionDate") return false;
-      return Array.isArray(value) ? value.length > 0 : Boolean(value);
-    }),
-    [form],
-  );
-
+  const hasIdentity = Boolean(form.name || form.studentId);
   useEffect(() => {
     const warnBeforeLeaving = (event: BeforeUnloadEvent) => {
-      if (!hasContent || exported) return;
+      if (!hasIdentity || exported) return;
       event.preventDefault();
     };
     window.addEventListener("beforeunload", warnBeforeLeaving);
     return () => window.removeEventListener("beforeunload", warnBeforeLeaving);
-  }, [hasContent, exported]);
+  }, [hasIdentity, exported]);
+
+  const completion = useMemo(() => {
+    const answers = [form.question, form.purpose, form.priorities, form.officialNotes, form.nextAction];
+    return answers.filter((answer) => answer.trim()).length;
+  }, [form]);
 
   function update<K extends keyof Passport>(field: K, value: Passport[K]) {
     setForm((current) => ({ ...current, [field]: value }));
     setExported(false);
+    setMessage("");
   }
 
-  function toggleRoute(route: string) {
-    const routes = form.routes.includes(route)
-      ? form.routes.filter((item) => item !== route)
-      : [...form.routes, route];
-    update("routes", routes);
+  function toggleRoute(route: Channel) {
+    const selected = form.routes.includes(route);
+    const routes = selected ? form.routes.filter((item) => item !== route) : [...form.routes, route];
+    const primaryRoute = selected && form.primaryRoute === route ? routes[0] ?? "" : form.primaryRoute || route;
+    setForm((current) => ({ ...current, routes, primaryRoute }));
+    setExported(false);
   }
 
-  function toggleDraft(enabled: boolean) {
-    setDraftEnabled(enabled);
-    if (!enabled) {
-      window.localStorage.removeItem(storageKey);
-      setLastSaved("");
-    }
+  function chooseHint(hint: string) {
+    update("nextAction", hint);
   }
 
-  function clearForm() {
-    if (!window.confirm("¿Seguro que quieres borrar todo tu Pasaporte de decisión y el borrador local?")) return;
-    setForm({ ...emptyForm, sessionDate: today() });
+  function clearDraft() {
+    if (!window.confirm("¿Seguro que quieres borrar las respuestas y el borrador de este navegador?")) return;
     window.localStorage.removeItem(storageKey);
-    setDraftEnabled(false);
+    setForm(emptyForm);
     setLastSaved("");
     setExported(false);
+    setMessage("");
     setActiveStep(1);
   }
 
-  function documentText(view: ExportView) {
-    const header = [
+  function documentText() {
+    return [
       "PASAPORTE DE DECISIÓN INTERNACIONAL",
       `Nombre: ${display(form.name)}`,
       `Matrícula: ${display(form.studentId)}`,
-      `Fecha: ${display(form.sessionDate)}`,
+      `Fecha de descarga: ${new Date().toLocaleDateString("es-MX")}`,
       "",
-    ];
-    const common = [
-      "DUDA O DECISIÓN ENFOCADA",
-      display(form.focusedQuestion || form.startingQuestion),
+      "MI EXPLORACIÓN",
+      `Duda o decisión: ${display(form.question)}`,
+      `Propósito: ${display(form.purpose)}`,
+      `Prioridad y dificultad: ${display(form.priorities)}`,
       "",
-      `Canales de apoyo: ${form.routes.join(", ") || "No definidos"}`,
-      `Contexto para canalizar: ${display(form.routeContext)}`,
+      "CONTRASTE CON INFORMACIÓN OFICIAL",
+      display(form.officialNotes),
       "",
-      "ACUERDO",
+      "MI RUTA DE SEGUIMIENTO",
+      `Canales que pueden ayudar: ${form.routes.join(", ") || "No definidos"}`,
+      `Canal prioritario: ${form.primaryRoute || "No definido"}`,
       `Siguiente acción: ${display(form.nextAction)}`,
       `Fecha: ${display(form.actionDate)}`,
-      `Evidencia de avance: ${display(form.evidence)}`,
-      `Seguimiento: ${display(form.followUp)}`,
-    ];
-    if (view === "pi") {
-      return [...header, "PARA CONSULTA INSTITUCIONAL", `Fuente consultada: ${display(form.sourceConsulted)}`, `Lo que entendí: ${display(form.understood)}`, `Lo que sigue sin estar claro: ${display(form.unresolved)}`, "", ...common].join("\n");
-    }
-    if (view === "mentor") {
-      return [...header, "SÍNTESIS DE MENTORÍA", `Motivo de consulta: ${display(form.startingQuestion)}`, `Apoyo esperado: ${display(form.expectedSupport)}`, `Experiencia buscada: ${display(form.desiredExperience)}`, `Oportunidad que no encuentra hoy: ${display(form.missingOpportunity)}`, `Criterio prioritario: ${display(form.priority)}`, `Tensión principal: ${display(form.tension)}`, "", ...common].join("\n");
-    }
-    return [...header, "EXPLORACIÓN", `Motivo de consulta: ${display(form.startingQuestion)}`, `Apoyo esperado: ${display(form.expectedSupport)}`, `Experiencia buscada: ${display(form.desiredExperience)}`, `Oportunidad que no encuentra hoy: ${display(form.missingOpportunity)}`, `Criterio prioritario: ${display(form.priority)}`, `Tensión principal: ${display(form.tension)}`, "", "EXPLORACIÓN PRELIMINAR DE PI", `Fuente consultada: ${display(form.sourceConsulted)}`, `Lo que entendí: ${display(form.understood)}`, `Lo que sigue sin estar claro: ${display(form.unresolved)}`, "", ...common].join("\n");
+      `Cómo lo retomaré: ${display(form.followUp)}`,
+      "",
+      "Este documento organiza una reflexión y preguntas de seguimiento. La oferta, los requisitos, los costos, las fechas y las equivalencias deben confirmarse en las fuentes y canales institucionales correspondientes.",
+    ].join("\n");
   }
 
-  function download(view: ExportView) {
-    const blob = new Blob([documentText(view)], { type: "text/plain;charset=utf-8" });
+  function downloadText() {
+    const blob = new Blob([documentText()], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = `pasaporte-decision-${view}.txt`;
+    anchor.download = "pasaporte-decision-internacional.txt";
     anchor.click();
     URL.revokeObjectURL(url);
     setExported(true);
-    setShareMessage("Copia descargada. Guárdala y compártela con tu mentor o mentora.");
+    setMessage("Pasaporte descargado. Compártelo con tu mentor o mentora para respaldar y continuar la conversación.");
   }
 
-  async function share(view: ExportView) {
-    const file = new File([documentText(view)], `pasaporte-decision-${view}.txt`, { type: "text/plain" });
+  function printPassport() {
+    setExported(true);
+    setMessage("En la ventana de impresión, elige “Guardar como PDF” para conservar tu Pasaporte.");
+    window.setTimeout(() => window.print(), 0);
+  }
+
+  async function sharePassport() {
+    const file = new File([documentText()], "pasaporte-decision-internacional.txt", { type: "text/plain" });
     if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
       try {
-        await navigator.share({ title: "Pasaporte de decisión", text: "Comparto mi Pasaporte para dar seguimiento a la sesión.", files: [file] });
+        await navigator.share({ title: "Pasaporte de Decisión", text: "Comparto mi Pasaporte para dar seguimiento a la sesión.", files: [file] });
         setExported(true);
-        setShareMessage("Se abrió el menú para compartir. Confirma que tu mentor o mentora recibió el archivo.");
+        setMessage("Se abrió el menú para compartir. Confirma que tu mentor o mentora recibió el archivo.");
         return;
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") return;
       }
     }
-    download(view);
-    setShareMessage("Tu navegador no permite compartir el archivo directamente. Se descargó para que lo adjuntes en correo o WhatsApp.");
+    downloadText();
+    setMessage("Tu navegador no permite compartir directamente. Se descargó el archivo para que lo adjuntes en correo o WhatsApp.");
   }
 
-  function print(view: ExportView) {
-    setExportView(view);
-    setExported(true);
-    setShareMessage("Se abrió la impresión. Elige “Guardar como PDF” para conservar una copia.");
-    window.setTimeout(() => window.print(), 0);
+  async function copyQuestion() {
+    const text = [
+      `Duda: ${display(form.question)}`,
+      `Información revisada: ${display(form.officialNotes)}`,
+      `Siguiente acción: ${display(form.nextAction)}`,
+    ].join("\n");
+    try {
+      await navigator.clipboard.writeText(text);
+      setMessage("Duda copiada. Puedes pegarla en un correo o mensaje para PI o Dirección de Programa.");
+    } catch {
+      setMessage("No fue posible copiar automáticamente. Descarga el Pasaporte para conservar la información.");
+    }
   }
 
   const steps = [
-    { id: 1, name: "Llegada" },
-    { id: 2, name: "Propósito" },
-    { id: 3, name: "Criterios" },
-    { id: 4, name: "Exploración" },
-    { id: 5, name: "Ruta" },
+    { id: 1, name: "Enfocar" },
+    { id: 2, name: "Contrastar" },
+    { id: 3, name: "Actuar" },
   ];
 
   return (
     <div className="content-stack">
-      <section className="panel privacy-panel no-print" aria-labelledby="draft-title">
-        <div>
-          <p className="section-label">Antes de comenzar</p>
-          <h2 id="draft-title">Tú controlas este documento</h2>
-          <p>El sitio no envía tus respuestas. Descarga el Pasaporte y compártelo con tu mentor o mentora por correo o WhatsApp para respaldarlo.</p>
-        </div>
-        <div className="draft-toggle">
-          <input id="draft-enabled" type="checkbox" checked={draftEnabled} onChange={(event) => toggleDraft(event.target.checked)} />
-          <label htmlFor="draft-enabled"><strong>Conservar un borrador en este dispositivo</strong><small>Úsalo sólo si es personal. Nombre y matrícula no se guardan.</small></label>
-        </div>
-        {draftEnabled && <p className="draft-status" aria-live="polite">{lastSaved ? `Borrador local activo · última actualización ${new Date(lastSaved).toLocaleString("es-MX")}` : "Activando borrador local…"}</p>}
-      </section>
-
-      <div className="step-progress-wrapper no-print">
-        <div className="step-progress-bar">
-          {steps.map((step) => (
-            <button key={step.id} onClick={() => setActiveStep(step.id)} className={`step-dot-btn ${activeStep === step.id ? "active" : ""} ${activeStep > step.id ? "completed" : ""}`} type="button" aria-label={`Ir al paso ${step.id}: ${step.name}`}>
-              <span className="step-dot-number">{step.id}</span><span className="step-dot-label">{step.name}</span>
-            </button>
-          ))}
-        </div>
+      <div className="compact-progress no-print" aria-label={`Paso ${activeStep} de 3`}>
+        <span>Paso {activeStep} de 3 · {steps[activeStep - 1].name}</span>
+        <div aria-hidden="true"><i style={{ width: `${(activeStep / 3) * 100}%` }} /></div>
       </div>
 
       <form className="passport-form-container" onSubmit={(event) => event.preventDefault()}>
         {activeStep === 1 && (
           <section className="panel panel-accent animated-fade">
-            <span className="step-badge">Paso 1 de 5 · Llegada</span>
-            <h2>¿Qué necesitas de esta conversación?</h2>
-            <p className="step-instruction">Tu mentor o mentora utilizará estas respuestas para enfocar la exploración contigo.</p>
-            <div className="field-grid">
-              <div className="field"><label htmlFor="name">Nombre</label><input id="name" type="text" autoComplete="name" value={form.name} onChange={(event) => update("name", event.target.value)} placeholder="Tu nombre" /></div>
-              <div className="field"><label htmlFor="studentId">Matrícula <small>No se guarda en el borrador local.</small></label><input id="studentId" type="text" autoComplete="off" value={form.studentId} onChange={(event) => update("studentId", event.target.value)} placeholder="A0…" /></div>
-              <div className="field full"><label htmlFor="startingQuestion">¿Qué decisión o duda te trae hoy?</label><textarea id="startingQuestion" value={form.startingQuestion} onChange={(event) => update("startingQuestion", event.target.value)} placeholder="Todavía no sé qué tipo de experiencia se relaciona mejor con…" /></div>
-              <div className="field full"><label htmlFor="expectedSupport">Al terminar esta conversación me sería útil…</label><input id="expectedSupport" type="text" value={form.expectedSupport} onChange={(event) => update("expectedSupport", event.target.value)} placeholder="Ordenar mis opciones, aclarar un criterio o preparar una pregunta…" /></div>
+            <span className="step-badge">Fase 1 · Enfocar la conversación</span>
+            <h2>Lo que quiero explorar</h2>
+            <p className="step-instruction">Responde con frases breves. Tu mentor o mentora puede ayudarte a profundizar.</p>
+            <div className="field-grid single-column-fields">
+              <div className="field">
+                <label htmlFor="question">1. ¿Qué duda o decisión sobre una experiencia internacional te gustaría trabajar hoy?</label>
+                <textarea id="question" value={form.question} onChange={(event) => update("question", event.target.value)} placeholder="No sé por dónde comenzar o qué tipo de experiencia se relaciona con…" rows={2} />
+              </div>
+              <div className="field">
+                <label htmlFor="purpose">2. ¿Qué buscas lograr académica, profesional o personalmente con esta experiencia?<small>Piensa en aprendizajes, enfoques, entornos, vínculos o experiencias que podrían ampliar o complementar tu trayectoria actual en el Tec.</small></label>
+                <textarea id="purpose" value={form.purpose} onChange={(event) => update("purpose", event.target.value)} placeholder="Profundizar en un área, practicar otro idioma, conocer otra forma de trabajo…" rows={2} />
+              </div>
+              <div className="field">
+                <label htmlFor="priorities">3. ¿Qué es lo más importante para ti al elegir y qué podría dificultar esa decisión?</label>
+                <textarea id="priorities" value={form.priorities} onChange={(event) => update("priorities", event.target.value)} placeholder="Quiero cuidar… y necesito considerar…" rows={2} />
+              </div>
             </div>
           </section>
         )}
 
         {activeStep === 2 && (
-          <section className="panel animated-fade">
-            <span className="step-badge">Paso 2 de 5 · Propósito y oportunidad</span>
-            <h2>¿Qué buscas vivir o aprender?</h2>
-            <p className="step-instruction">No elijas todavía un destino. Describe la diferencia que esperas que esta experiencia produzca en tu trayectoria.</p>
-            <div className="field-grid">
-              <div className="field full"><label htmlFor="desiredExperience">¿Qué te gustaría aprender, practicar o experimentar?</label><textarea id="desiredExperience" value={form.desiredExperience} onChange={(event) => update("desiredExperience", event.target.value)} placeholder="Quiero trabajar con…, profundizar en…, desenvolverme en…" /></div>
-              <div className="field full"><label htmlFor="missingOpportunity">¿Qué oportunidad no encuentras hoy en tu programa, campus o trayectoria en el Tec?</label><textarea id="missingOpportunity" value={form.missingOpportunity} onChange={(event) => update("missingOpportunity", event.target.value)} placeholder="Una especialización, enfoque, contexto cultural, red o forma de aprendizaje…" /></div>
+          <section className="panel panel-dark animated-fade">
+            <span className="step-badge">Fase 2 · Contrastar con información oficial</span>
+            <h2>Exploración preliminar de PI</h2>
+            <p className="step-instruction">Dedica hasta cinco minutos a revisar una fuente oficial. No necesitas elegir una universidad durante esta sesión.</p>
+            <a className="button button-primary official-action" href={sharePointUrl} target="_blank" rel="noreferrer">Abrir Mi Experiencia Internacional ↗</a>
+            <div className="field official-reflection">
+              <label htmlFor="officialNotes">4. Después de explorar, completa estas dos frases:</label>
+              <textarea id="officialNotes" value={form.officialNotes} onChange={(event) => update("officialNotes", event.target.value)} placeholder={"Encontré que…\nTodavía necesito aclarar…"} rows={4} />
+            </div>
+            <div className="question-refinement">
+              <label htmlFor="refined-question">Revisa tu duda inicial y afínala si es necesario.<small>No es una pregunta nueva: edita la misma duda con lo que acabas de encontrar.</small></label>
+              <textarea id="refined-question" value={form.question} onChange={(event) => update("question", event.target.value)} rows={2} />
             </div>
           </section>
         )}
 
         {activeStep === 3 && (
           <section className="panel animated-fade">
-            <span className="step-badge">Paso 3 de 5 · Criterios y tensión</span>
-            <h2>¿Qué quieres proteger al decidir?</h2>
-            <p className="step-instruction">Un criterio cobra valor cuando puedes explicar por qué importa y qué tensión produce frente a otras prioridades.</p>
-            <div className="field-grid">
-              <div className="field full"><label htmlFor="priority">Mi criterio más importante es… porque…</label><textarea id="priority" value={form.priority} onChange={(event) => update("priority", event.target.value)} placeholder="La oferta académica especializada es prioritaria porque…" /></div>
-              <div className="field full"><label htmlFor="tension">¿Entre qué dos prioridades o posibilidades sientes tensión?</label><textarea id="tension" value={form.tension} onChange={(event) => update("tension", event.target.value)} placeholder="Entre una opción con mayor afinidad académica y otra con una red de apoyo más accesible…" /></div>
+            <span className="step-badge">Fase 3 · Construir la ruta</span>
+            <h2>Mi siguiente paso</h2>
+            <p className="step-instruction">Una misma duda puede requerir varios apoyos. Elige con cuál comenzarás y define una acción realizable.</p>
+
+            <fieldset className="field">
+              <legend>¿Qué canales pueden ayudarte con esta duda?</legend>
+              <div className="choice-grid route-choices">
+                {channels.map((channel) => (
+                  <label className="choice" key={channel}>
+                    <input type="checkbox" checked={form.routes.includes(channel)} onChange={() => toggleRoute(channel)} />
+                    <span>{channel}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            {form.routes.length > 0 && (
+              <div className="field primary-route-field">
+                <label htmlFor="primaryRoute">¿Con cuál comenzarás?</label>
+                <select id="primaryRoute" value={form.primaryRoute} onChange={(event) => update("primaryRoute", event.target.value as Channel)}>
+                  {form.routes.map((route) => <option value={route} key={route}>{route}</option>)}
+                </select>
+              </div>
+            )}
+
+            {form.primaryRoute && (
+              <div className="hint-panel">
+                <p><strong>Ideas para construir tu siguiente paso</strong><br /><small>Elige una como punto de partida o escribe una acción propia.</small></p>
+                <div className="hint-list">
+                  {actionHints[form.primaryRoute].map((hint) => <button type="button" key={hint} onClick={() => chooseHint(hint)}>{hint}</button>)}
+                </div>
+                {form.primaryRoute === "Conversación con estudiantes" && <p className="peer-note">Las experiencias de otros estudiantes aportan perspectiva, pero no confirman requisitos, costos, equivalencias o disponibilidad.</p>}
+              </div>
+            )}
+
+            <div className="field-grid action-fields">
+              <div className="field full"><label htmlFor="nextAction">5. ¿Qué harás después?</label><textarea id="nextAction" value={form.nextAction} onChange={(event) => update("nextAction", event.target.value)} placeholder="Mi siguiente acción concreta será…" rows={2} /></div>
+              <div className="field"><label htmlFor="actionDate">¿Para cuándo?</label><input id="actionDate" type="date" value={form.actionDate} onChange={(event) => update("actionDate", event.target.value)} /></div>
+              <div className="field"><label htmlFor="followUp">¿Cómo lo retomarás?</label><select id="followUp" value={form.followUp} onChange={(event) => update("followUp", event.target.value)}><option value="">Selecciona una opción</option><option value="Lo compartiré con mi mentor/a al completarlo">Lo compartiré con mi mentor/a</option><option value="Lo retomaremos en una sesión posterior">Lo retomaremos en otra sesión</option><option value="Daré seguimiento de forma autónoma">Daré seguimiento de forma autónoma</option><option value="Por definir">Por definir</option></select></div>
+            </div>
+
+            <div className="identity-block">
+              <div><p className="section-label">Antes de descargar</p><h3>Identifica tu documento</h3><p>Nombre y matrícula sólo se incorporan a la copia que generes; no se guardan en el borrador del navegador.</p></div>
+              <div className="field-grid">
+                <div className="field"><label htmlFor="name">Nombre</label><input id="name" type="text" autoComplete="name" value={form.name} onChange={(event) => update("name", event.target.value)} /></div>
+                <div className="field"><label htmlFor="studentId">Matrícula</label><input id="studentId" type="text" autoComplete="off" value={form.studentId} onChange={(event) => update("studentId", event.target.value)} placeholder="A0…" /></div>
+              </div>
+            </div>
+
+            <div className="export-primary" aria-labelledby="export-title">
+              <h3 id="export-title">Respalda tu Pasaporte antes de salir</h3>
+              <p>Descárgalo y compártelo con tu mentor o mentora por correo o WhatsApp para continuar la conversación.</p>
+              <div className="actions">
+                <button className="button button-primary" type="button" onClick={printPassport}>Guardar como PDF</button>
+                <button className="button button-secondary" type="button" onClick={sharePassport}>Compartir</button>
+                <button className="text-button" type="button" onClick={downloadText}>Descargar texto</button>
+                <button className="text-button" type="button" onClick={copyQuestion}>Copiar duda para PI o Dirección</button>
+              </div>
+              {message && <p className="export-message" aria-live="polite">{message}</p>}
             </div>
           </section>
         )}
 
-        {activeStep === 4 && (
-          <section className="panel panel-dark animated-fade">
-            <span className="step-badge">Paso 4 de 5 · Escaneo oficial</span>
-            <h2>Explora preliminarmente la información de PI</h2>
-            <p className="step-instruction">Dedica hasta cinco minutos: abre una fuente oficial, registra una idea que comprendiste y algo que sigue sin estar claro. No necesitas elegir universidad hoy.</p>
-            <p><a className="inline-official-link" href={sharePointUrl} target="_blank" rel="noreferrer">Abrir Mi Experiencia Internacional ↗</a></p>
-            <div className="field-grid">
-              <div className="field full"><label htmlFor="sourceConsulted">Fuente o sección consultada</label><input id="sourceConsulted" type="text" value={form.sourceConsulted} onChange={(event) => update("sourceConsulted", event.target.value)} placeholder="Oferta de programas, calendario, requisitos…" /></div>
-              <div className="field"><label htmlFor="understood">Lo que entendí</label><textarea id="understood" value={form.understood} onChange={(event) => update("understood", event.target.value)} placeholder="La oferta se consulta por…" /></div>
-              <div className="field"><label htmlFor="unresolved">Lo que sigue sin estar claro</label><textarea id="unresolved" value={form.unresolved} onChange={(event) => update("unresolved", event.target.value)} placeholder="No puedo determinar si…" /></div>
-            </div>
-          </section>
-        )}
-
-        {activeStep === 5 && (
-          <section className="panel animated-fade">
-            <span className="step-badge">Paso 5 de 5 · Duda y continuidad</span>
-            <h2>Formula una duda y construye su ruta</h2>
-            <p className="step-instruction">La misma duda puede requerir apoyos distintos. Escríbela una vez y señala qué necesitas de cada canal.</p>
-            <div className="field-grid">
-              <div className="field full"><label htmlFor="focusedQuestion">Mi duda o decisión enfocada</label><textarea id="focusedQuestion" value={form.focusedQuestion} onChange={(event) => update("focusedQuestion", event.target.value)} placeholder="Después de revisar…, necesito saber… para poder decidir…" /></div>
-              <fieldset className="field full"><legend>¿Qué canales pueden ayudar?</legend><div className="choice-grid">{channels.map((channel) => <label className="choice" key={channel}><input type="checkbox" checked={form.routes.includes(channel)} onChange={() => toggleRoute(channel)} /><span>{channel}</span></label>)}</div></fieldset>
-              <div className="field full"><label htmlFor="routeContext">¿Qué necesitas específicamente de esos canales?</label><textarea id="routeContext" value={form.routeContext} onChange={(event) => update("routeContext", event.target.value)} placeholder="PI: confirmar… · Dirección: revisar… · Mentoría: ayudarme a valorar…" /></div>
-              <div className="field"><label htmlFor="nextAction">Siguiente acción</label><input id="nextAction" type="text" value={form.nextAction} onChange={(event) => update("nextAction", event.target.value)} placeholder="Enviar la pregunta, agendar una conversación…" /></div>
-              <div className="field"><label htmlFor="actionDate">Fecha acordada</label><input id="actionDate" type="date" value={form.actionDate} onChange={(event) => update("actionDate", event.target.value)} /></div>
-              <div className="field"><label htmlFor="evidence">¿Cómo sabrás que avanzaste?</label><input id="evidence" type="text" value={form.evidence} onChange={(event) => update("evidence", event.target.value)} placeholder="Tendré respuesta, lista corta, cita agendada…" /></div>
-              <div className="field"><label htmlFor="followUp">Acuerdo de seguimiento</label><input id="followUp" type="text" value={form.followUp} onChange={(event) => update("followUp", event.target.value)} placeholder="Compartiré el resultado con mi mentor/a…" /></div>
-            </div>
-          </section>
-        )}
-
-        <section className={`panel passport-print-view only-print export-${exportView}`}>
+        <section className="panel passport-print-view only-print">
           <h2>Pasaporte de Decisión Internacional</h2>
-          <p><strong>Nombre:</strong> {display(form.name)} · <strong>Matrícula:</strong> {display(form.studentId)} · <strong>Fecha:</strong> {display(form.sessionDate)}</p>
-          {exportView !== "pi" && <div className="print-section"><h3>Síntesis de exploración</h3><p><strong>Motivo:</strong> {display(form.startingQuestion)}</p><p><strong>Apoyo esperado:</strong> {display(form.expectedSupport)}</p><p><strong>Experiencia buscada:</strong> {display(form.desiredExperience)}</p><p><strong>Oportunidad buscada:</strong> {display(form.missingOpportunity)}</p><p><strong>Criterio prioritario:</strong> {display(form.priority)}</p><p><strong>Tensión:</strong> {display(form.tension)}</p></div>}
-          {exportView !== "mentor" && <div className="print-section"><h3>Exploración preliminar de PI</h3><p><strong>Fuente:</strong> {display(form.sourceConsulted)}</p><p><strong>Lo que entendí:</strong> {display(form.understood)}</p><p><strong>Lo que sigue sin estar claro:</strong> {display(form.unresolved)}</p></div>}
-          <div className="print-section"><h3>Duda y ruta de seguimiento</h3><p><strong>Duda o decisión:</strong> {display(form.focusedQuestion)}</p><p><strong>Canales:</strong> {form.routes.join(", ") || "No definidos"}</p><p><strong>Qué necesito:</strong> {display(form.routeContext)}</p><p><strong>Acción:</strong> {display(form.nextAction)}</p><p><strong>Fecha:</strong> {display(form.actionDate)}</p><p><strong>Evidencia:</strong> {display(form.evidence)}</p><p><strong>Seguimiento:</strong> {display(form.followUp)}</p></div>
-          <p className="print-disclaimer">Este documento organiza una reflexión y preguntas de seguimiento. Requisitos, oferta, costos, fechas y equivalencias deben confirmarse en fuentes y canales institucionales.</p>
+          <p><strong>Nombre:</strong> {display(form.name)} · <strong>Matrícula:</strong> {display(form.studentId)} · <strong>Fecha:</strong> {new Date().toLocaleDateString("es-MX")}</p>
+          <div className="print-section"><h3>Mi exploración</h3><p><strong>Duda o decisión:</strong> {display(form.question)}</p><p><strong>Propósito:</strong> {display(form.purpose)}</p><p><strong>Prioridad y dificultad:</strong> {display(form.priorities)}</p></div>
+          <div className="print-section"><h3>Contraste con información oficial</h3><p>{display(form.officialNotes)}</p></div>
+          <div className="print-section"><h3>Mi ruta de seguimiento</h3><p><strong>Canales:</strong> {form.routes.join(", ") || "No definidos"}</p><p><strong>Canal prioritario:</strong> {form.primaryRoute || "No definido"}</p><p><strong>Siguiente acción:</strong> {display(form.nextAction)}</p><p><strong>Fecha:</strong> {display(form.actionDate)}</p><p><strong>Seguimiento:</strong> {display(form.followUp)}</p></div>
+          <p className="print-disclaimer">Este documento organiza una reflexión y preguntas de seguimiento. La oferta, los requisitos, los costos, las fechas y las equivalencias deben confirmarse en fuentes y canales institucionales.</p>
         </section>
 
-        <div className="actions no-print">
-          {activeStep > 1 && <button className="button button-secondary" type="button" onClick={() => setActiveStep((step) => step - 1)}>Anterior</button>}
-          {activeStep < 5 ? <button className="button button-primary" type="button" onClick={() => setActiveStep((step) => step + 1)}>Siguiente paso</button> : <span className="save-status-badge">Revisa y respalda tu Pasaporte</span>}
-        </div>
-
-        {activeStep === 5 && (
-          <section className="panel export-panel no-print" aria-labelledby="export-title">
-            <p className="section-label">Cierre de la sesión</p>
-            <h2 id="export-title">Descarga y comparte tu Pasaporte</h2>
-            <p>Elige la copia pertinente. El sitio no la envía ni conserva: tú decides dónde guardarla y con quién compartirla.</p>
-            <div className="export-grid">
-              <div><h3>Copia completa</h3><p>Para ti y, si lo decides, para tu mentor/a.</p><div className="mini-actions"><button className="button button-primary" type="button" onClick={() => print("full")}>Guardar PDF</button><button className="button button-secondary" type="button" onClick={() => share("full")}>Compartir</button><button className="text-button" type="button" onClick={() => download("full")}>Descargar texto</button></div></div>
-              <div><h3>Hoja para PI o Dirección</h3><p>Incluye fuente, duda, canal y siguiente acción.</p><div className="mini-actions"><button className="button button-secondary" type="button" onClick={() => print("pi")}>Guardar PDF</button><button className="text-button" type="button" onClick={() => share("pi")}>Compartir</button></div></div>
-              <div><h3>Resumen de mentoría</h3><p>Exploración, intereses y acuerdos para continuidad/CRM.</p><div className="mini-actions"><button className="button button-secondary" type="button" onClick={() => print("mentor")}>Guardar PDF</button><button className="text-button" type="button" onClick={() => share("mentor")}>Compartir</button></div></div>
-            </div>
-            {shareMessage && <p className="export-message" aria-live="polite">{shareMessage}</p>}
-          </section>
-        )}
-
-        <div className="status-row no-print" aria-live="polite">
-          <span className="save-status">{draftEnabled ? "Borrador local activado; descarga una copia antes de salir." : "Sin guardado local; descarga una copia antes de salir."}</span>
-          <button className="button button-danger" type="button" onClick={clearForm}>Borrar todo</button>
+        <div className="form-navigation no-print">
+          <div className="actions">
+            {activeStep > 1 && <button className="button button-secondary" type="button" onClick={() => setActiveStep((step) => step - 1)}>Anterior</button>}
+            {activeStep < 3 && <button className="button button-primary" type="button" onClick={() => setActiveStep((step) => step + 1)}>Siguiente</button>}
+          </div>
+          <div className="local-draft-status" aria-live="polite">
+            <span>{ready ? `Borrador local · ${completion}/5 respuestas${lastSaved ? ` · ${new Date(lastSaved).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}` : ""}` : "Preparando borrador…"}</span>
+            <button type="button" onClick={clearDraft}>Borrar borrador</button>
+          </div>
+          <p className="draft-note">Se conserva en este navegador sin nombre ni matrícula. No es un respaldo: descarga el Pasaporte antes de salir.</p>
         </div>
       </form>
     </div>

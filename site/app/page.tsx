@@ -49,11 +49,11 @@ export default function Home() {
           <aside className="hero-card" aria-label="Resultados del pasaporte">
             <p className="hero-card-label">Al salir tendrás</p>
             <ol className="outcome-list">
-              <li><span>01</span> Propósito profesional y académico</li>
-              <li><span>02</span> Oportunidad que buscas</li>
-              <li><span>03</span> Criterio y tensión principal</li>
-              <li><span>04</span> Exploración preliminar de PI</li>
-              <li><span>05</span> Duda y acuerdo de seguimiento</li>
+              <li><span>01</span> Una duda enfocada</li>
+              <li><span>02</span> Un propósito personal</li>
+              <li><span>03</span> Una prioridad para decidir</li>
+              <li><span>04</span> Un contraste con información oficial</li>
+              <li><span>05</span> Un siguiente paso con fecha</li>
             </ol>
           </aside>
         </section>
@@ -64,17 +64,15 @@ export default function Home() {
           <div className="shell agenda-layout">
             <div>
               <p className="section-label">Metodología de diseño</p>
-              <h2 id="agenda-title">Un recorrido de decisión en cinco pasos.</h2>
+              <h2 id="agenda-title">Un recorrido guiado en tres fases.</h2>
               <p>
                 Sigue una secuencia lógica para estructurar tu intercambio, partiendo de tu realidad hacia la validación oficial.
               </p>
             </div>
-            <ol className="agenda-strip">
-              <li><strong>Paso 1</strong><span>Propósito</span></li>
-              <li><strong>Paso 2</strong><span>Oportunidad</span></li>
-              <li><strong>Paso 3</strong><span>Tensión</span></li>
-              <li><strong>Paso 4</strong><span>Exploración</span></li>
-              <li><strong>Paso 5</strong><span>Seguimiento</span></li>
+            <ol className="agenda-strip agenda-three">
+              <li><strong>Fase 1</strong><span>Enfocar</span></li>
+              <li><strong>Fase 2</strong><span>Contrastar</span></li>
+              <li><strong>Fase 3</strong><span>Actuar</span></li>
             </ol>
           </div>
         </section>

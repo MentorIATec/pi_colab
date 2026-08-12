@@ -61,11 +61,11 @@ documentarse en el registro de decisiones.
     `localStorage`. Documentos migratorios, datos financieros, salud y otras
     condiciones sensibles no se capturan en el Pasaporte.
 17. **El estudiante conserva control del documento y del borrador.** Las
-    respuestas pueden permanecer en memoria o, mediante aceptación explícita,
-    guardarse localmente en un dispositivo personal. El borrador excluye nombre
-    y matrícula, puede eliminarse y no sustituye la descarga, impresión o envío
-    deliberado del documento. En un dispositivo compartido debe mantenerse
-    desactivado.
+    respuestas se guardan automáticamente en el navegador para resistir recargas
+    o la consulta de fuentes externas. El estado debe ser visible y el borrador
+    puede eliminarse. Excluye nombre y matrícula y no sustituye la descarga,
+    impresión o envío deliberado del documento. En un dispositivo compartido el
+    estudiante debe borrar el borrador antes de retirarse.
 18. **Accesibilidad desde el primer prototipo.** Contraste WCAG AA, etiquetas
     asociadas, navegación por teclado, lenguaje claro y diseño móvil son
     criterios de aceptación, no mejoras posteriores.
@@ -91,3 +91,7 @@ documentarse en el registro de decisiones.
 25. **Crédito no equivale a titularidad.** El pie puede reconocer concepto,
     diseño, facilitación y validación sin atribuir automáticamente derechos
     patrimoniales a una persona.
+26. **Los hints orientan sin prescribir.** Las sugerencias de seguimiento se
+    muestran sólo después de elegir un canal prioritario, se limitan a tres, son
+    editables y no se exportan si el estudiante no las adopta. La experiencia de
+    pares aporta perspectiva, pero nunca se presenta como validación oficial.

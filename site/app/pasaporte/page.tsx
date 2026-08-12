@@ -11,7 +11,7 @@ export default function PassportPage() {
         <PageIntro
           eyebrow="Movilidad Estudiantil · Hoja de Trabajo"
           title="Pasaporte de Decisión"
-          description="Reflexiona con tu mentor o mentora, explora preliminarmente la información oficial y convierte tus dudas en una ruta de seguimiento."
+          description="Cinco preguntas para enfocar tu conversación, contrastar una fuente oficial y acordar un siguiente paso con tu mentor o mentora."
         />
         <div className="content-stack">
           <PassportForm />

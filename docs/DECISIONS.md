@@ -224,3 +224,31 @@ diseño del taller, los materiales y el sitio.
   envío automático, analítica de campos e integración directa con CRM. El plazo
   de expiración automática se evaluará después de probar recuperación y
   seguimiento; no se simulará un vencimiento que aún no esté implementado.
+
+## ADR-018 — Reducir el Pasaporte a cinco preguntas y una salida principal
+
+- **Fecha:** 12 de agosto de 2026
+- **Estado:** Aceptada e implementada en la variante local
+- **Contexto:** Una auditoría externa confirmó que la variante de cinco pasos
+  conservaba demasiados campos para una conversación guiada de 30 minutos. Las
+  dudas inicial, pendiente y enfocada se repetían; el cierre presentaba tres
+  exportaciones con igual jerarquía; y la identificación temprana hacía que el
+  recurso pareciera un trámite.
+- **Decisión:** El Pasaporte se organiza en tres fases —enfocar, contrastar y
+  actuar— con cinco preguntas reflexivas. La duda inicial se edita y afina en el
+  mismo campo. Nombre y matrícula aparecen únicamente antes de exportar. Existe
+  un solo Pasaporte principal y una acción secundaria para copiar la duda que se
+  llevará a PI o Dirección de Programa.
+- **Decisión:** La pregunta de propósito se formula desde la ampliación de la
+  trayectoria, sin presuponer carencias del modelo del Tec. Los ejemplos de
+  acciones aparecen progresivamente según el canal prioritario, son editables y
+  no se convierten en una lista obligatoria.
+- **Consecuencia:** Se eliminan los campos de apoyo esperado, fuente consultada,
+  evidencia de avance y contexto por canal. Acción, fecha y forma de retomar se
+  conservan como un único bloque de seguimiento. Las experiencias de pares se
+  distinguen explícitamente de la validación institucional.
+- **Consecuencia:** Para reducir decisiones técnicas al inicio, el borrador de
+  respuestas se guarda automáticamente en el navegador. Excluye nombre y
+  matrícula, muestra un estado discreto y puede eliminarse. Este ajuste sustituye
+  el control opcional descrito en la ADR-017; la descarga continúa siendo el
+  respaldo recomendado.

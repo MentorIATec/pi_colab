@@ -207,18 +207,20 @@ diseño del taller, los materiales y el sitio.
 ## ADR-017 — Permitir un borrador local consciente para recuperar el trabajo
 
 - **Fecha:** 12 de agosto de 2026
-- **Estado:** Propuesta derivada de auditoría; pendiente de aceptación
+- **Estado:** Aceptada con control explícito; implementada en la variante local
 - **Contexto:** En celular o PC, el estudiante debe salir temporalmente para
   consultar sitios de PI y puede cerrar o recargar la página por accidente. La
   pérdida total del trabajo perjudica el flujo pedagógico. Al mismo tiempo, un
   guardado automático con identificación representa un riesgo en dispositivos
   compartidos.
-- **Decisión propuesta:** Al iniciar, el estudiante elegirá entre dispositivo
-  personal, con borrador local recuperable, y dispositivo compartido, sin
-  persistencia. El borrador conservará respuestas de trabajo, pero no nombre ni
-  matrícula. Tendrá estado visible, eliminación manual y vencimiento propuesto de
-  30 días. La descarga seguirá siendo el único respaldo recomendado.
-- **Consecuencia:** Si se acepta, esta ADR sustituirá únicamente la prohibición
-  absoluta de `localStorage` de la ADR-016. Se mantiene la prohibición de cuentas,
-  backend, envío automático, analítica de campos e integración directa con CRM.
-  El texto y el plazo deberán probarse antes del piloto.
+- **Decisión:** No se preguntará si la persona utiliza plataforma web o móvil ni
+  se crearán recorridos separados: el mismo sitio será adaptable. Dentro del
+  formulario habrá un control opcional, desactivado por defecto, para conservar
+  un borrador local en un dispositivo personal. El borrador conservará respuestas
+  de trabajo, pero no nombre ni matrícula, y tendrá estado visible y eliminación
+  manual. La descarga seguirá siendo el respaldo recomendado.
+- **Consecuencia:** Esta ADR sustituye únicamente la prohibición absoluta de
+  `localStorage` de la ADR-016. Se mantiene la prohibición de cuentas, backend,
+  envío automático, analítica de campos e integración directa con CRM. El plazo
+  de expiración automática se evaluará después de probar recuperación y
+  seguimiento; no se simulará un vencimiento que aún no esté implementado.

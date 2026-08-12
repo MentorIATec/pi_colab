@@ -9,7 +9,7 @@ const resources = [
     eyebrow: "Durante el taller",
     title: "Pasaporte de decisión",
     description:
-      "La herramienta central de trabajo: define tu propósito profesional, tus condiciones de viabilidad y tu plan de validación.",
+      "Reflexiona con mentoría, explora una fuente oficial y convierte una duda en una ruta de seguimiento.",
     tone: "violet",
   },
   {
@@ -50,10 +50,10 @@ export default function Home() {
             <p className="hero-card-label">Al salir tendrás</p>
             <ol className="outcome-list">
               <li><span>01</span> Propósito profesional y académico</li>
-              <li><span>02</span> Condiciones de viabilidad (límites)</li>
-              <li><span>03</span> Criterios de elección (preferencias)</li>
-              <li><span>04</span> Opciones candidatas en MiTec</li>
-              <li><span>05</span> Plan de validación con fechas</li>
+              <li><span>02</span> Oportunidad que buscas</li>
+              <li><span>03</span> Criterio y tensión principal</li>
+              <li><span>04</span> Exploración preliminar de PI</li>
+              <li><span>05</span> Duda y acuerdo de seguimiento</li>
             </ol>
           </aside>
         </section>
@@ -71,10 +71,10 @@ export default function Home() {
             </div>
             <ol className="agenda-strip">
               <li><strong>Paso 1</strong><span>Propósito</span></li>
-              <li><strong>Paso 2</strong><span>Viabilidad</span></li>
-              <li><strong>Paso 3</strong><span>Preferencias</span></li>
-              <li><strong>Paso 4</strong><span>Búsqueda</span></li>
-              <li><strong>Paso 5</strong><span>Validación</span></li>
+              <li><strong>Paso 2</strong><span>Oportunidad</span></li>
+              <li><strong>Paso 3</strong><span>Tensión</span></li>
+              <li><strong>Paso 4</strong><span>Exploración</span></li>
+              <li><strong>Paso 5</strong><span>Seguimiento</span></li>
             </ol>
           </div>
         </section>

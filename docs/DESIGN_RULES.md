@@ -60,10 +60,12 @@ documentarse en el registro de decisiones.
     no se enviarán a un servidor, a analítica, a una herramienta de IA ni a
     `localStorage`. Documentos migratorios, datos financieros, salud y otras
     condiciones sensibles no se capturan en el Pasaporte.
-17. **El estudiante conserva control del documento.** Las respuestas existen
-    durante la sesión del navegador y en el archivo que el estudiante decide
-    descargar, imprimir o compartir. La interfaz advierte que cerrar o recargar
-    elimina lo no exportado y que un dispositivo compartido requiere precaución.
+17. **El estudiante conserva control del documento y del borrador.** Las
+    respuestas pueden permanecer en memoria o, mediante aceptación explícita,
+    guardarse localmente en un dispositivo personal. El borrador excluye nombre
+    y matrícula, puede eliminarse y no sustituye la descarga, impresión o envío
+    deliberado del documento. En un dispositivo compartido debe mantenerse
+    desactivado.
 18. **Accesibilidad desde el primer prototipo.** Contraste WCAG AA, etiquetas
     asociadas, navegación por teclado, lenguaje claro y diseño móvil son
     criterios de aceptación, no mejoras posteriores.

@@ -156,24 +156,19 @@ La siguiente versión debe separar componentes y límites de datos:
 | Conversación de decisión | Explorar brecha, criterios, tensiones y alternativas | Reflexión y criterios priorizados | Estudiante con mentora |
 | Enrutamiento y continuidad | Formular una pregunta y un siguiente paso | Canal, acción y fecha | Estudiante; apoyo según el tema |
 
-### Nombre y matrícula
+### Nombre y matrícula: decisión posterior a la auditoría
 
-El nombre puede ayudar a personalizar la conversación. La matrícula es un
-identificador institucional y sólo debe capturarse si existe una finalidad
-operativa concreta, como asistencia o continuidad individual. Antes de
-implementarla deben definirse:
+Se decidió que el sitio no mantendrá un registro. Nombre y matrícula se usarán
+transitoriamente para rotular el Pasaporte y facilitar su uso deliberado con PI y
+mentoría. No se guardarán en `localStorage`, no se enviarán a un servidor y no se
+incorporarán a analítica o URLs.
 
-- finalidad y base institucional para la captura;
-- sistema que será la fuente del registro;
-- personas con acceso;
-- plazo de retención y mecanismo de eliminación;
-- texto de aviso al estudiante;
-- comportamiento en dispositivos compartidos y en la impresión/exportación.
-
-No se recomienda guardar matrícula en `localStorage` dentro de un sitio público
-de GitHub Pages. Tampoco debe incorporarse a analítica, URLs, archivos descargados
-o impresiones por defecto. Una arquitectura prudente separaría el registro
-institucional identificable del pasaporte reflexivo controlado por el estudiante.
+El archivo exportado sí podrá contener ambos datos porque es el documento que el
+estudiante controla y decide compartir. La interfaz deberá explicar esa
+diferencia, advertir que cerrar o recargar elimina lo no exportado y permitir una
+vista específica para PI que no exponga innecesariamente toda la reflexión de
+mentoría. El registro posterior en CRM será una acción de la persona mentora bajo
+los controles institucionales correspondientes, no una integración del sitio.
 
 ## Hipótesis de ruta para el siguiente diseño
 

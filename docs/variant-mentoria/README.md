@@ -10,16 +10,19 @@ en una revisión de requisitos institucionales.
 - Rama de trabajo: `codex/mentoria-connection-variant`.
 - El prototipo publicado en `main` permanece sin cambios.
 - Primera etapa: auditoría del instrumento actual.
-- Aún no se modifica la interfaz ni se implementa captura de identidad.
+- Aún no se modifica la interfaz.
+- Se aprobó una arquitectura sin almacenamiento: el sitio generará un documento
+  portátil que el estudiante podrá compartir de forma deliberada.
 
 ## Documentos
 
 - [Prompt de auditoría](./AUDIT_PROMPT.md)
 - [Hallazgos de la auditoría](./AUDIT_FINDINGS.md)
+- [Arquitectura para compartir el Pasaporte](./SHARING_ARCHITECTURE.md)
 
 ## Límite de esta etapa
 
-La matrícula y el nombre se consideran una necesidad de arquitectura, pero no se
-agregarán como campos hasta definir propósito, almacenamiento, acceso, retención
-y aviso de privacidad. Esta decisión también requiere revisar la regla de diseño
-vigente que excluye la matrícula del sitio.
+La captura transitoria de nombre y matrícula queda permitida exclusivamente para
+rotular el documento. El sitio no conservará los datos. La descarga, impresión o
+entrega del archivo será una acción explícita del estudiante; cualquier registro
+posterior en CRM pertenece al proceso institucional de mentoría, no al sitio.

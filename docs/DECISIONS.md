@@ -174,3 +174,32 @@ diseño del taller, los materiales y el sitio.
 - **Consecuencia:** Se permite producir prototipos y realizar revisión de
   escritorio, pero no convocar estudiantes, pilotear, publicar ni presentar los
   materiales como oficiales hasta cerrar el gate institucional.
+
+## ADR-016 — Convertir el Pasaporte en un documento portátil sin almacenamiento web
+
+- **Fecha:** 12 de agosto de 2026
+- **Estado:** Aceptada para la variante de mentoría
+- **Contexto:** El estudiante necesita identificarse con nombre y matrícula y
+  producir una evidencia que sirva a dos conversaciones distintas: llevar dudas
+  concretas a Programas Internacionales y documentar con mentoría la exploración,
+  los intereses, los acuerdos y el seguimiento. El sitio público no debe
+  convertirse en un expediente ni en una fuente paralela al CRM institucional.
+- **Decisión:** El sitio funcionará como generador local y transitorio de un
+  documento denominado Pasaporte. No tendrá cuentas, base de datos, envío
+  automático, analítica de campos ni persistencia en `localStorage`. Nombre,
+  matrícula y respuestas existirán solamente mientras la página esté abierta y
+  en el archivo que el estudiante decida descargar, imprimir o compartir.
+- **Decisión:** El documento tendrá una carátula común y tres bloques de salida:
+  **síntesis para mentoría**, **preguntas para PI** y **acuerdos de seguimiento**.
+  La persona mentora podrá trasladar al CRM una síntesis mínima de la sesión y
+  sus acuerdos conforme a las prácticas institucionales aplicables; el sitio no
+  se conectará ni escribirá directamente en el CRM.
+- **Consecuencia:** La interfaz debe advertir que al recargar o cerrar se perderá
+  el contenido no exportado. El archivo generado quedará bajo control del
+  estudiante y deberá incluir una nota para compartir sólo con los canales
+  correspondientes. PI recibirá preguntas y contexto pertinente, no el registro
+  reflexivo completo salvo decisión expresa del estudiante.
+- **Consecuencia:** Esta decisión precisa las ADR-010 y ADR-011: el seguimiento
+  sigue siendo acordado con el estudiante, pero mentoría puede documentar la
+  sesión y una acción posterior en el CRM institucional. No se crea seguimiento
+  silencioso desde el sitio.

@@ -55,11 +55,15 @@ documentarse en el registro de decisiones.
 
 15. **La IA organiza y cuestiona; no autoriza ni confirma.** No valida convenios,
     equivalencias, disponibilidad, costos, visa, seguridad o acreditación.
-16. **No se introducen datos sensibles.** Matrícula, documentos migratorios,
-    datos financieros, salud y otras condiciones identificables no se comparten
-    con herramientas de IA ni se almacenan en el sitio.
-17. **El estudiante conserva control de sus datos.** Cualquier guardado local
-    deberá explicarse, poder borrarse y advertir sobre dispositivos compartidos.
+16. **El sitio no almacena datos personales.** Nombre y matrícula podrán
+    incorporarse de manera transitoria para rotular el documento generado, pero
+    no se enviarán a un servidor, a analítica, a una herramienta de IA ni a
+    `localStorage`. Documentos migratorios, datos financieros, salud y otras
+    condiciones sensibles no se capturan en el Pasaporte.
+17. **El estudiante conserva control del documento.** Las respuestas existen
+    durante la sesión del navegador y en el archivo que el estudiante decide
+    descargar, imprimir o compartir. La interfaz advierte que cerrar o recargar
+    elimina lo no exportado y que un dispositivo compartido requiere precaución.
 18. **Accesibilidad desde el primer prototipo.** Contraste WCAG AA, etiquetas
     asociadas, navegación por teclado, lenguaje claro y diseño móvil son
     criterios de aceptación, no mejoras posteriores.
@@ -72,9 +76,10 @@ documentarse en el registro de decisiones.
     100 % de ocupación; se reserva margen operativo.
 21. **La continuidad forma parte del taller.** El cierre siempre asigna una
     acción, una persona de apoyo y una fecha.
-22. **El seguimiento posterior es autónomo.** Podrán ofrecerse recordatorios o una
-    autoevaluación opcional, pero no se condicionará la participación ni se
-    recopilarán datos personales para monitorear al estudiante.
+22. **El seguimiento posterior es explícito y acordado.** El Pasaporte registra
+    acción, canal y fecha elegidos con el estudiante. Mentoría puede documentar
+    en el CRM institucional una síntesis mínima y el acuerdo de seguimiento; el
+    sitio no monitorea, envía recordatorios ni actualiza el CRM automáticamente.
 23. **La publicación respeta alcance y titularidad.** Se publican formatos nuevos;
     los materiales institucionales se enlazan o citan. El uso del nombre, marca,
     logotipo o activos del Tec requiere la validación institucional correspondiente.

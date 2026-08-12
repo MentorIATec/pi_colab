@@ -203,3 +203,22 @@ diseño del taller, los materiales y el sitio.
   sigue siendo acordado con el estudiante, pero mentoría puede documentar la
   sesión y una acción posterior en el CRM institucional. No se crea seguimiento
   silencioso desde el sitio.
+
+## ADR-017 — Permitir un borrador local consciente para recuperar el trabajo
+
+- **Fecha:** 12 de agosto de 2026
+- **Estado:** Propuesta derivada de auditoría; pendiente de aceptación
+- **Contexto:** En celular o PC, el estudiante debe salir temporalmente para
+  consultar sitios de PI y puede cerrar o recargar la página por accidente. La
+  pérdida total del trabajo perjudica el flujo pedagógico. Al mismo tiempo, un
+  guardado automático con identificación representa un riesgo en dispositivos
+  compartidos.
+- **Decisión propuesta:** Al iniciar, el estudiante elegirá entre dispositivo
+  personal, con borrador local recuperable, y dispositivo compartido, sin
+  persistencia. El borrador conservará respuestas de trabajo, pero no nombre ni
+  matrícula. Tendrá estado visible, eliminación manual y vencimiento propuesto de
+  30 días. La descarga seguirá siendo el único respaldo recomendado.
+- **Consecuencia:** Si se acepta, esta ADR sustituirá únicamente la prohibición
+  absoluta de `localStorage` de la ADR-016. Se mantiene la prohibición de cuentas,
+  backend, envío automático, analítica de campos e integración directa con CRM.
+  El texto y el plazo deberán probarse antes del piloto.

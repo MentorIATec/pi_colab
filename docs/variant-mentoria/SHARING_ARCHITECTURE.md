@@ -1,5 +1,11 @@
 # Arquitectura del Pasaporte como documento compartible
 
+> **Nota de evolución:** La auditoría posterior del journey propone permitir un
+> borrador local opcional en dispositivos personales, sin persistir nombre ni
+> matrícula. La recomendación y sus controles se documentan en
+> `JOURNEY_NAMING_AUDIT.md`; deberá convertirse en una nueva decisión antes de
+> implementar la variante.
+
 ## Decisión de producto
 
 El Pasaporte no será una cuenta, expediente o formulario enviado a una base de

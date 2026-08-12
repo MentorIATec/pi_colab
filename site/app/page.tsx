@@ -22,6 +22,8 @@ const resources = [
 ];
 
 export default function Home() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
   return (
     <>
       <SiteHeader />
@@ -98,7 +100,7 @@ export default function Home() {
         <section className="shell boundary-card" aria-labelledby="boundary-title">
           <div className="boundary-image-frame">
             <img 
-              src="/hero.png" 
+              src={`${basePath}/hero.png`}
               alt="Ilustración 3D de planificación de ruta internacional" 
               style={{ width: "100%", height: "auto", display: "block" }}
             />

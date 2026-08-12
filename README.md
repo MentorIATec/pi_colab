@@ -31,6 +31,16 @@ ningún contenido se piloteará o publicará antes del visto bueno de Programas
 Internacionales. En esta etapa se prototipan agendas, actividades, Pasaporte,
 caso guiado, facilitación y evaluación.
 
+## Sitio público
+
+La versión para estudiantes se publica automáticamente en GitHub Pages desde
+la rama `main`:
+
+<https://mentoriatec.github.io/pi_colab/>
+
+El sitio es estático, no requiere una cuenta de ChatGPT y conserva las
+respuestas del Pasaporte únicamente en el navegador del estudiante.
+
 ## Documentación
 
 - [Registro de decisiones](docs/DECISIONS.md)

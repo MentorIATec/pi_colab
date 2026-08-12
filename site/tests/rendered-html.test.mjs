@@ -23,8 +23,8 @@ test("server-renders the final Spanish landing page", async () => {
   assert.match(html, /<title>Antes del destino/i);
   assert.match(html, /Planifica tu experiencia internacional con evidencia/);
   assert.match(html, /Mi Ruta Internacional/);
-  assert.match(html, /href="\/pasaporte"/);
-  assert.match(html, /href="\/guia-mitec"/);
+  assert.match(html, /href="\/pasaporte\/?"/);
+  assert.match(html, /href="\/guia-mitec\/?"/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
@@ -33,7 +33,7 @@ for (const [path, expected] of [
   ["/guia-mitec", "Guía de Navegación MiTec"],
 ]) {
   test(`server-renders ${path}`, async () => {
-    const response = await render(path);
+  const response = await render(`${path}/`);
     assert.equal(response.status, 200);
     assert.match(await response.text(), new RegExp(expected));
   });

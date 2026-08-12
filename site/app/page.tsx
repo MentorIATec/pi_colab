@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { OfficialResourcesCarousel } from "./components/OfficialResourcesCarousel";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 
@@ -56,6 +57,8 @@ export default function Home() {
             </ol>
           </aside>
         </section>
+
+        <OfficialResourcesCarousel basePath={basePath} />
 
         <section className="agenda-band" aria-labelledby="agenda-title">
           <div className="shell agenda-layout">

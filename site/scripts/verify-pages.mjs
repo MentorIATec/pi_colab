@@ -15,9 +15,13 @@ for (const [file, expected] of pages) {
 }
 
 await access(new URL("hero.png", output));
+await access(new URL("pi-ruta-inicial.png", output));
+await access(new URL("pi-calendario-feb-jun-2027.png", output));
 const home = await readFile(new URL("index.html", output), "utf8");
 assert.match(home, /src="\/pi_colab\/hero\.png"/);
 assert.match(home, /href="\/pi_colab\/pasaporte\/"/);
 assert.match(home, /href="\/pi_colab\/guia-mitec\/"/);
+assert.match(home, /Información oficial de PI/);
+assert.match(home, /tecmx\.sharepoint\.com/);
 
 console.log("GitHub Pages export verified.");

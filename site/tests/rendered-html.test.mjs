@@ -25,6 +25,8 @@ test("server-renders the final Spanish landing page", async () => {
   assert.match(html, /Mi Ruta Internacional/);
   assert.match(html, /href="\/pasaporte\/?"/);
   assert.match(html, /href="\/guia-mitec\/?"/);
+  assert.match(html, /Información oficial de PI/);
+  assert.match(html, /tecmx\.sharepoint\.com/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 

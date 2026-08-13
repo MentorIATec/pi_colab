@@ -5,7 +5,7 @@ personales ni monitorea obligatoriamente el seguimiento posterior.
 
 ## Resultados observables
 
-Al final de la sesión, una revisión voluntaria del Pasaporte debe permitir
+Al final de la sesión, una revisión voluntaria de la Guía de exploración debe permitir
 observar si el estudiante:
 
 1. formuló una intención de aprendizaje;
@@ -37,7 +37,7 @@ Tres preguntas opcionales, sin nombre ni matrícula:
 
 ## Continuidad autónoma
 
-El Pasaporte puede incluir un recordatorio local elegido por el estudiante o una
+La Guía de exploración puede incluir un recordatorio local elegido por cada estudiante o una
 casilla de autoevaluación:
 
 > Revisé mi siguiente paso en la fecha que elegí.

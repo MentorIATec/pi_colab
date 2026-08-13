@@ -37,7 +37,7 @@ jobs:
 
       - name: Construir sitio estático
         env:
-          NEXT_PUBLIC_BASE_PATH: /pi_colab
+          NEXT_PUBLIC_BASE_PATH: /brujula-internacional
         run: npm run build:pages
 
       - name: Subir sitio construido

@@ -9,9 +9,9 @@ export default function PassportPage() {
       <SiteHeader />
       <main className="page-main narrow-shell">
         <PageIntro
-          eyebrow="Movilidad Estudiantil · Hoja de Trabajo"
-          title="Pasaporte de Decisión"
-          description="Cinco preguntas para enfocar tu conversación, contrastar una fuente oficial y acordar un siguiente paso con tu mentor o mentora."
+          eyebrow="Brújula Internacional · Recurso de trabajo"
+          title="Guía de exploración"
+          description="Cinco preguntas para relacionar la experiencia que quieres construir con lo que necesitas confirmar para hacerla posible."
         />
         <div className="content-stack">
           <PassportForm />

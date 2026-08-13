@@ -59,7 +59,7 @@ documentarse en el registro de decisiones.
     incorporarse de manera transitoria para rotular el documento generado, pero
     no se enviarán a un servidor, a analítica, a una herramienta de IA ni a
     `localStorage`. Documentos migratorios, datos financieros, salud y otras
-    condiciones sensibles no se capturan en el Pasaporte.
+    condiciones sensibles no se capturan en la Guía de exploración.
 17. **El estudiante conserva control del documento y del borrador.** Las
     respuestas se guardan automáticamente en el navegador para resistir recargas
     o la consulta de fuentes externas. El estado debe ser visible y el borrador
@@ -73,12 +73,12 @@ documentarse en el registro de decisiones.
 ## Facilitación y medición
 
 19. **Cada bloque produce una evidencia observable.** No se incluyen exposiciones
-    o ejercicios sin un resultado que alimente el Pasaporte.
+    o ejercicios sin un resultado que alimente la Guía de exploración.
 20. **El tiempo incluye transiciones y dudas.** Ninguna agenda se planeará al
     100 % de ocupación; se reserva margen operativo.
 21. **La continuidad forma parte del taller.** El cierre siempre asigna una
     acción, una persona de apoyo y una fecha.
-22. **El seguimiento posterior es explícito y acordado.** El Pasaporte registra
+22. **El seguimiento posterior es explícito y acordado.** La Guía de exploración registra
     acción, canal y fecha elegidos con el estudiante. Mentoría puede documentar
     en el CRM institucional una síntesis mínima y el acuerdo de seguimiento; el
     sitio no monitorea, envía recordatorios ni actualiza el CRM automáticamente.
@@ -95,3 +95,28 @@ documentarse en el registro de decisiones.
     muestran sólo después de elegir un canal prioritario, se limitan a tres, son
     editables y no se exportan si el estudiante no las adopta. La experiencia de
     pares aporta perspectiva, pero nunca se presenta como validación oficial.
+27. **Lenguaje neutro, natural y no marcado.** El contenido no presupone género
+    ni utiliza el masculino como forma automática de referirse a una persona.
+    Se prefieren construcciones como “cada estudiante”, “quien participa”,
+    “Mentoría”, “el equipo de PI”, “la persona responsable” o la segunda persona
+    directa. Se evitan desdoblamientos repetitivos, pronombres inventados y
+    terminaciones artificiales en “-e”. La neutralidad no debe producir un tono
+    burocrático, distante o impersonal.
+28. **Las dos rutas se hacen visibles y se relacionan.** La Guía de exploración distingue
+    la experiencia personal, formativa y profesional que se quiere construir de
+    la oferta, los requisitos y el proceso que necesitan confirmarse. Ninguna se
+    presenta de manera aislada: la consulta oficial debe volver a la intención y
+    las prioridades del estudiante.
+29. **Cada pregunta cumple una función pedagógica.** No se agrega un campo si su
+    respuesta no alimenta un criterio, un contraste o una acción. Se privilegian
+    pocas respuestas significativas y editables sobre la escritura por
+    cumplimiento.
+30. **La herramienta no es una barrera de acceso.** Ningún copy debe sugerir que
+    primero hay que ordenar ideas o formular una pregunta correcta para acudir a
+    Mentoría, PI o Dirección de Programa. Se puede comenzar desde la incertidumbre
+    o desde una preferencia ya definida.
+31. **La exploración produce una referencia, no una decisión.** Antes de
+    interpretar la consulta oficial, cada participante puede conservar una o dos
+    opciones que hayan llamado su atención. Su función es volver concreta la
+    conversación sobre intereses, prioridades y pendientes; no forman un ranking,
+    no prueban viabilidad y no obligan a elegir un destino.

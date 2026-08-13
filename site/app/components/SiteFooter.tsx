@@ -3,7 +3,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div>
-          <p className="footer-title">Mi Ruta Internacional</p>
+          <p className="footer-title">Brújula Internacional</p>
           <p>Recurso para habilitar la mentoría estudiantil en decisiones de movilidad.</p>
         </div>
         <div>

@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Antes del destino",
-    template: "%s · Antes del destino",
+    default: "Brújula Internacional",
+    template: "%s · Brújula Internacional",
   },
   description:
-    "Kit de mentoría para organizar dudas y diseñar el siguiente paso hacia una experiencia internacional.",
+    "Acompañamiento para explorar opciones y construir una experiencia internacional vinculada con tu formación.",
 };
 
 export default function RootLayout({

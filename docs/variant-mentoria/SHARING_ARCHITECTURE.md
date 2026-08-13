@@ -1,4 +1,4 @@
-# Arquitectura del Pasaporte como documento compartible
+# Arquitectura de la Guía de exploración como documento compartible
 
 > **Nota de evolución:** La auditoría posterior del journey propone permitir un
 > borrador local opcional en dispositivos personales, sin persistir nombre ni
@@ -8,7 +8,7 @@
 
 ## Decisión de producto
 
-El Pasaporte no será una cuenta, expediente o formulario enviado a una base de
+La Guía de exploración no será una cuenta, expediente o formulario enviado a una base de
 datos. Será un **documento de enlace** que el estudiante construye durante la
 microintervención y puede llevar a las conversaciones posteriores.
 
@@ -24,7 +24,7 @@ Su función es conservar continuidad sin confundir responsabilidades:
 
 ```mermaid
 flowchart LR
-    E["Estudiante completa el Pasaporte<br/>en una sesión transitoria"]
+    E["Estudiante completa la Guía de exploración<br/>en una sesión transitoria"]
     D["Documento descargado o impreso<br/>bajo control del estudiante"]
     M["Mentoría:<br/>exploración, intereses y acuerdos"]
     P["PI:<br/>dudas concretas y contexto pertinente"]
@@ -48,7 +48,7 @@ automático.
 - matrícula;
 - fecha de la conversación;
 - etapa declarada del proceso;
-- propósito del Pasaporte y nota de control del estudiante.
+- propósito de la Guía de exploración y nota de control de quien participa.
 
 No se solicitan teléfono, correo, pasaporte, datos financieros, salud ni
 documentos probatorios.
@@ -112,7 +112,7 @@ el registro, pero no necesitan repetirse en la nota narrativa.
 Para proteger la pertinencia de la información, la variante debe ofrecer tres
 salidas seleccionables:
 
-1. **Pasaporte completo:** copia del estudiante con todas las secciones.
+1. **Resumen de exploración:** copia de quien participa con todas las secciones.
 2. **Hoja para PI:** identificación, contexto mínimo, preguntas y acciones
    relacionadas con PI.
 3. **Resumen de mentoría:** exploración, acuerdos y caja de texto para CRM.

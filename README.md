@@ -1,11 +1,11 @@
-# Diseña tu experiencia internacional
+# Brújula Internacional
 
 Proyecto para diseñar, pilotear y publicar un taller práctico que ayude a
 estudiantes a convertir la intención de realizar una experiencia internacional
 en una ruta de decisión informada y verificable.
 
-El taller se construye en colaboración con Programas Internacionales y se
-complementa con seguimiento del mentor o mentora y de la dirección de programa.
+La experiencia se construye para acompañar la exploración estudiantil y
+conectarla con Programas Internacionales, Mentoría y Dirección de Programa.
 No sustituye la asesoría institucional ni promete que el estudiante terminará
 la sesión con una universidad seleccionada.
 
@@ -19,8 +19,8 @@ Al terminar el componente síncrono, cada estudiante deberá contar con:
 - las personas o áreas responsables de cada validación; y
 - un siguiente paso concreto y con fecha.
 
-Después de la sesión, el estudiante completará de manera autónoma un
-**Pasaporte de decisión internacional** con acompañamiento institucional.
+Durante la sesión, cada estudiante completa una **Guía de exploración** y
+conserva un **Resumen de exploración** para dar seguimiento.
 
 ## Estado
 
@@ -28,7 +28,7 @@ Después de la sesión, el estudiante completará de manera autónoma un
 
 El Sprint 0 cerró para fines de diseño con un gate institucional pendiente:
 ningún contenido se piloteará o publicará antes del visto bueno de Programas
-Internacionales. En esta etapa se prototipan agendas, actividades, Pasaporte,
+Internacionales. En esta etapa se prototipan agendas, actividades, la Guía de exploración,
 caso guiado, facilitación y evaluación.
 
 ## Sitio público
@@ -36,10 +36,10 @@ caso guiado, facilitación y evaluación.
 La versión para estudiantes se publica automáticamente en GitHub Pages desde
 la rama `main`:
 
-<https://mentoriatec.github.io/pi_colab/>
+<https://mentoriatec.github.io/brujula-internacional/>
 
 El sitio es estático, no requiere una cuenta de ChatGPT y conserva las
-respuestas del Pasaporte únicamente en el navegador del estudiante.
+respuestas de trabajo únicamente en el navegador de cada estudiante.
 
 ## Documentación
 
@@ -50,6 +50,7 @@ respuestas del Pasaporte únicamente en el navegador del estudiante.
 - [Plan de trabajo del Sprint 0](docs/sprint-0/WORKPLAN.md)
 - [Lista mínima para publicación](docs/sprint-0/PUBLICATION_CHECKLIST.md)
 - [Gobernanza, identidad y atribución](docs/sprint-0/CONTENT_GOVERNANCE.md)
+- [Dominio y publicación](docs/DOMAIN_AND_DEPLOYMENT.md)
 - [Sprint 1 — Diseño de la experiencia](docs/sprint-1/README.md)
 
 ## Principio rector

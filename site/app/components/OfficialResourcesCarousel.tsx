@@ -41,7 +41,7 @@ export function OfficialResourcesCarousel({ basePath = "" }: { basePath?: string
         <div className="official-heading">
           <div>
             <p className="section-label">Información oficial de PI</p>
-            <h2 id="official-resources-title">Explora el proceso antes de construir tu ruta.</h2>
+            <h2 id="official-resources-title">Conoce el proceso y consulta la información oficial.</h2>
             <p>
               Estas piezas ofrecen un primer panorama. SharePoint de Programas
               Internacionales conserva la información vigente y completa.

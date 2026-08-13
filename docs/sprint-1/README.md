@@ -26,7 +26,7 @@ confundir estimaciones con información institucional confirmada.
 - [x] Variante de 60 minutos.
 - [x] Microintervención de 30 minutos para 3 a 5 estudiantes.
 - [x] Actividad previa de 10 a 15 minutos.
-- [x] Pasaporte de decisión en baja fidelidad.
+- [x] Guía de exploración en baja fidelidad.
 - [x] Caso ficticio para practicar filtros y comparación.
 - [x] Guía inicial de facilitación.
 - [x] Plan de evaluación sin seguimiento obligatorio.
@@ -46,7 +46,7 @@ enlaces y límites.
 - [Agenda de 60 minutos](AGENDA_60.md)
 - [Microintervención de 30 minutos](AGENDA_30.md)
 - [Actividad previa](PREWORK.md)
-- [Pasaporte de decisión](PASSPORT.md)
+- [Prototipo histórico del Pasaporte de decisión](PASSPORT.md)
 - [Caso guiado](GUIDED_CASE.md)
 - [Guía de facilitación](FACILITATION_GUIDE.md)
 - [Plan de evaluación](EVALUATION_PLAN.md)
@@ -54,9 +54,9 @@ enlaces y límites.
 ## Criterios de salida
 
 - El recorrido cabe en el tiempo incluyendo transiciones y margen.
-- Cada bloque produce una sección concreta del Pasaporte.
+- Cada bloque produce una sección concreta de la Guía de exploración.
 - Las modalidades de 60 y 90 minutos comparten los mismos resultados mínimos;
-  la variante de 30 minutos utiliza un Pasaporte exprés y delega la lista de
+  la variante de 30 minutos utiliza una Guía de exploración y delega la lista de
   siete opciones al trabajo autónomo.
 - El caso no utiliza instituciones, convenios o costos reales.
 - PI puede identificar claramente qué contenido debe validar.

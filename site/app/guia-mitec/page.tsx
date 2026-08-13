@@ -16,16 +16,16 @@ export default function MiTecGuidePage() {
       <SiteHeader />
       <main className="page-main shell">
         <PageIntro
-          eyebrow="Movilidad Estudiantil · Consulta de Opciones"
-          title="Guía de Navegación MiTec"
-          description="Una referencia rápida para saber exactamente dónde buscar en el portal oficial y cómo estructurar tus decisiones de ruta."
+          eyebrow="Brújula Internacional · Consulta técnica"
+          title="Oferta y requisitos en MiTec"
+          description="Una referencia rápida para localizar la oferta oficial, revisar condiciones y reconocer qué información necesitas confirmar."
         />
 
         <div className="content-stack">
-          {/* Back to passport link */}
+          {/* Back to exploration link */}
           <div className="no-print">
             <Link href="/pasaporte" className="back-link">
-              ← Regresar a mi Pasaporte
+              ← Regresar a mi exploración
             </Link>
           </div>
 
@@ -78,37 +78,62 @@ export default function MiTecGuidePage() {
 
           {/* TAB CONTENT: FILTERS */}
           {activeTab === "filters" && (
-            <section className="panel animated-fade">
-              <h2>Mapear tus Condiciones de Viabilidad</h2>
-              <p>Busca los factores límite obligatorios dentro del buscador del portal oficial:</p>
-              <div className="filter-mapping-grid">
-                <div className="mapping-card">
-                  <h3>Filtro Académico (Carrera / Promedio)</h3>
-                  <p className="mapping-instruction">
-                    Filtra siempre por tu <strong>Programa Académico</strong> para ver solo las opciones autorizadas. Revisa en la ficha el <strong>promedio mínimo (GPA)</strong> exigido; si tu promedio es menor, la opción queda descartada.
-                  </p>
+            <>
+              <section className="panel animated-fade">
+                <h2>Condiciones que necesitas revisar</h2>
+                <p>Consulta estos factores dentro del buscador oficial antes de considerar viable una opción:</p>
+                <div className="filter-mapping-grid">
+                  <div className="mapping-card">
+                    <h3>Programa y promedio</h3>
+                    <p className="mapping-instruction">
+                      Filtra por tu <strong>programa académico</strong> y revisa el <strong>promedio mínimo (GPA)</strong> indicado en la ficha. Si no cumples una condición, confirma con PI si existe alguna consideración aplicable antes de descartar la opción.
+                    </p>
+                  </div>
+                  <div className="mapping-card">
+                    <h3>Requisito de idioma</h3>
+                    <p className="mapping-instruction">
+                      Verifica el examen, puntaje y vigencia solicitados. No contar todavía con el comprobante no descarta por sí solo la opción: revisa si puedes obtenerlo dentro de las fechas aplicables.
+                    </p>
+                    <p>
+                      <a className="button button-secondary" href="https://tecmx-my.sharepoint.com/:b:/g/personal/pinacional_servicios_tec_mx/EfWMOOmzYY9LgE-_usT1Q1oBkfm2YNqhw2JuKSq-1DA0pQ?e=Voj8ei" target="_blank" rel="noreferrer">
+                        Revisar exámenes de idiomas ↗
+                      </a>
+                    </p>
+                    <p className="resource-context-note">Confirma después el requisito específico de cada opción en MiTec.</p>
+                  </div>
+                  <div className="mapping-card">
+                    <h3>Costos y tipo de pago</h3>
+                    <p className="mapping-instruction">
+                      Identifica el tipo de facturación y los costos estimados del periodo. Contrástalos con las prioridades y condiciones que necesitas cuidar.
+                    </p>
+                    <p>
+                      <a className="button button-secondary" href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="noreferrer">
+                        Consultar costos de vida por ciudad ↗
+                      </a>
+                    </p>
+                    <p className="resource-context-note">Numbeo es una fuente externa y sus cifras son estimaciones. Registra la ciudad y la fecha de consulta.</p>
+                  </div>
                 </div>
-                <div className="mapping-card">
-                  <h3>Requisito de Idioma</h3>
-                  <p className="mapping-instruction">
-                    Ubica la sección de <strong>&quot;Requisito de idioma&quot;</strong>. Verifica el puntaje mínimo de TOEFL, IELTS u otro certificado que se pide. Si aún no tienes esa certificación, no se considera una opción viable para este periodo.
-                  </p>
+              </section>
+
+              <section className="panel animated-fade">
+                <h2>Gastos que pueden aparecer en distintos momentos</h2>
+                <div className="three-col">
+                  <div><h3>Antes de participar</h3><p>Exámenes de idiomas, pasaporte y cuota de participación cuando corresponda.</p></div>
+                  <div><h3>Después de una asignación</h3><p>Seguro médico, trámites migratorios y posibles cargos de la universidad o país de destino.</p></div>
+                  <div><h3>Durante la experiencia</h3><p>Alojamiento, alimentación, transporte y otros gastos personales.</p></div>
                 </div>
-                <div className="mapping-card">
-                  <h3>Viabilidad Financiera</h3>
-                  <p className="mapping-instruction">
-                    Identifica el tipo de facturación (cuota regular del Tec o pago directo en la universidad destino) y los <strong>costos estimados</strong> del periodo. Evalúa si cumple con el presupuesto límite de tu Pasaporte.
-                  </p>
-                </div>
-              </div>
-            </section>
+                <p className="callout mt-4">Estas categorías preparan tu estimación; no constituyen una lista exhaustiva ni una cotización institucional.</p>
+              </section>
+            </>
           )}
 
           {/* TAB CONTENT: EVIDENCE */}
           {activeTab === "evidence" && (
-            <section className="panel panel-dark animated-fade">
-              <h2>Clasificación de Evidencia: Decidir con Certeza</h2>
-              <p>Al abrir la ficha de una universidad en MiTec, clasifica la información que encuentres en tres niveles de certeza:</p>
+            <>
+              <section className="panel panel-contrast animated-fade">
+                <h2>Distingue qué sabes y qué falta confirmar</h2>
+                <p>Al abrir la ficha de una universidad en MiTec, clasifica la información en tres niveles:</p>
               
               <div className="evidence-grid-horizontal">
                 <div className="evidence-box confirmed">
@@ -126,29 +151,27 @@ export default function MiTecGuidePage() {
                 <div className="evidence-box pending">
                   <span className="eb-badge">Pendiente</span>
                   <h4>Lo que Requiere Validación</h4>
-                  <p>Equivalencias de materias específicas para tu plan de estudios y disponibilidad de cupos en el periodo. Se aclara con tu Director de Programa o Programas Internacionales.</p>
+                  <p>Equivalencias de materias específicas para tu plan de estudios y disponibilidad de lugares en el periodo. Se aclaran con Dirección de Programa o Programas Internacionales.</p>
                 </div>
-              </div>
-            </section>
-          )}
+                </div>
+              </section>
 
-          {/* Protocol Row */}
-          <section className="panel">
-            <h2>¿Qué hacer si un dato es &quot;Pendiente&quot;?</h2>
-            <p>
-              No completes vacíos de información con suposiciones de redes sociales o respuestas de Inteligencia Artificial.
-            </p>
-            <div className="two-col mt-4">
-              <div>
-                <h4>1. Formular una duda concreta</h4>
-                <p>Escribe tu duda de forma específica en el <strong>Paso 5 de tu Pasaporte</strong>.</p>
-              </div>
-              <div>
-                <h4>2. Asignar canal y fecha</h4>
-                <p>Elige al responsable institucional oficial para resolverla y establece una fecha límite de consulta.</p>
-              </div>
-            </div>
-          </section>
+              <section className="panel animated-fade">
+                <h2>Si un dato sigue pendiente</h2>
+                <p>Conserva el vacío como pendiente y conviértelo en una consulta concreta.</p>
+                <div className="two-col mt-4">
+                  <div>
+                    <h3>1. Nombra lo que falta</h3>
+                    <p>Registra en tu Guía de exploración qué necesitas comparar, decidir o confirmar.</p>
+                  </div>
+                  <div>
+                    <h3>2. Elige por dónde comenzar</h3>
+                    <p>Selecciona el espacio que puede ayudarte y define cuándo realizarás la consulta.</p>
+                  </div>
+                </div>
+              </section>
+            </>
+          )}
 
           {/* Print View for Guide (All tabs visible sequentially when printed) */}
           <div className="only-print">
@@ -169,7 +192,14 @@ export default function MiTecGuidePage() {
               <ul>
                 <li><strong>Confirmado:</strong> Promedio, idioma requerido, convocatorias vigentes.</li>
                 <li><strong>Estimado:</strong> Costos de vida, hospedaje, traslados.</li>
-                <li><strong>Pendiente:</strong> Acreditaciones y equivalencias de materias (validación con Director de Programa).</li>
+                <li><strong>Pendiente:</strong> Acreditaciones y equivalencias de materias (consulta con Dirección de Programa).</li>
+              </ul>
+            </section>
+            <section className="panel mt-4">
+              <h2>4. Fuentes complementarias para preparar tu consulta</h2>
+              <ul>
+                <li><strong>Numbeo (Costos de vida):</strong> Referencia externa de gastos cotidianos antes, durante y después de la experiencia.</li>
+                <li><strong>Exámenes de idiomas:</strong> Consulta de comprobantes correspondientes a tu proceso de postulación.</li>
               </ul>
             </section>
           </div>

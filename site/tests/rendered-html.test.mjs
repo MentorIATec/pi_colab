@@ -20,9 +20,9 @@ test("server-renders the final Spanish landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /<html[^>]*lang="es"/i);
-  assert.match(html, /<title>Antes del destino/i);
-  assert.match(html, /Planifica tu experiencia internacional con evidencia/);
-  assert.match(html, /Mi Ruta Internacional/);
+  assert.match(html, /<title>Brújula Internacional/i);
+  assert.match(html, /Haz de tu experiencia internacional un paso clave en tu formación/);
+  assert.match(html, /Brújula Internacional/);
   assert.match(html, /href="\/pasaporte\/?"/);
   assert.match(html, /href="\/guia-mitec\/?"/);
   assert.match(html, /Información oficial de PI/);
@@ -31,8 +31,8 @@ test("server-renders the final Spanish landing page", async () => {
 });
 
 for (const [path, expected] of [
-  ["/pasaporte", "Pasaporte de Decisión"],
-  ["/guia-mitec", "Guía de Navegación MiTec"],
+  ["/pasaporte", "Guía de exploración"],
+  ["/guia-mitec", "Oferta y requisitos en MiTec"],
 ]) {
   test(`server-renders ${path}`, async () => {
   const response = await render(`${path}/`);

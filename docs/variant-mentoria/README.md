@@ -1,6 +1,7 @@
 # Variante: conexión de mentoría
 
-Esta carpeta documenta una variante local del Pasaporte de Decisión. Su propósito
+Esta carpeta documenta la variante local que evolucionó del Pasaporte de
+Decisión a la **Guía de exploración** de **Brújula Internacional**. Su propósito
 es recuperar las preguntas que permiten a una mentora comprender la decisión del
 estudiante y acompañar su siguiente paso, sin convertir la sesión de 30 minutos
 en una revisión de requisitos institucionales.
@@ -16,9 +17,10 @@ en una revisión de requisitos institucionales.
 
 ## Documentos
 
+- [Ruta pedagógica canónica](../PEDAGOGICAL_ROUTE.md)
 - [Prompt de auditoría](./AUDIT_PROMPT.md)
 - [Hallazgos de la auditoría](./AUDIT_FINDINGS.md)
-- [Arquitectura para compartir el Pasaporte](./SHARING_ARCHITECTURE.md)
+- [Arquitectura para compartir la Guía de exploración](./SHARING_ARCHITECTURE.md)
 - [Auditoría del journey, continuidad local y nombre](./JOURNEY_NAMING_AUDIT.md)
 
 ## Límite de esta etapa

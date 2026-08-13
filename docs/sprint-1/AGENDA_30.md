@@ -1,4 +1,4 @@
-# Microintervención de 30 minutos — Antes del destino
+# Microintervención de 30 minutos — Brújula Internacional
 
 **Modalidad:** presencial o síncrona  
 **Tamaño:** 3 a 5 estudiantes  
@@ -16,14 +16,15 @@ convenios, costos, cursos, equivalencias, requisitos, plazas o fechas.
 
 ## Resultado de la sesión
 
-Al salir, el estudiante habrá completado su **Pasaporte de decisión exprés** con:
+Al salir, cada estudiante habrá completado su **Guía de exploración** con:
 1. Una intención de aprendizaje (su "norte").
 2. Dos filtros indispensables (lo no negociable).
 3. Dos preferencias (lo negociable).
-4. Una opción candidata ubicada en el portal oficial MiTec.
+4. Una o dos opciones que llamaron su atención en el portal oficial MiTec.
 5. Una pregunta clave asignada al canal correspondiente y un siguiente paso con fecha.
 
-No se requiere preparación previa. El estudiante trabajará directamente en su pasaporte digital durante la sesión.
+No se requiere preparación previa. Cada participante trabajará directamente en
+su Guía de exploración digital durante la sesión.
 
 ## Agenda
 
@@ -32,7 +33,7 @@ No se requiere preparación previa. El estudiante trabajará directamente en su 
 | 0–4 | Abrir | Presentar propósito, producto y límites. Ronda de una frase: “quiero aprender…” | Intención inicial |
 | 4–10 | Enfocar | Escritura individual y ronda de 45 segundos por persona | Norte redactado |
 | 10–16 | Filtrar | Distinguir condiciones que descartan o pausan de preferencias que inclinan | Dos filtros y dos preferencias |
-| 16–24 | Explorar | Navegar guiados por el portal *Mi Experiencia Internacional* aplicando los 2 filtros definidos | Una opción candidata + Estado de evidencia |
+| 16–24 | Explorar | Navegar guiados por el portal *Mi Experiencia Internacional*, aplicar los filtros definidos y elegir una o dos opciones que llamen la atención | Una o dos referencias de exploración + estado de evidencia |
 | 24–30 | Encaminar | Formular una pregunta sobre la opción, asignar fuente y elegir un siguiente paso | Pregunta + canal + acción + fecha |
 
 ## Reglas de diseño de esta variante
@@ -40,10 +41,11 @@ No se requiere preparación previa. El estudiante trabajará directamente en su 
 1. Primero se escribe; después se conversa.
 2. Las rondas usan el mismo orden y duran máximo 45 segundos por persona.
 3. La búsqueda de destinos es guiada, breve y focalizada únicamente en el portal oficial MiTec usando los filtros de viabilidad definidos.
-4. Una experiencia personal no se presenta como recomendación universal.
-5. Una duda sin evidencia se convierte en pregunta, no en respuesta estimada.
-6. Las necesidades privadas no se explican en plenaria; se asignan a un canal.
-7. El seguimiento a siete días es autónomo y no obligatorio.
+4. Elegir una o dos opciones durante la exploración crea referencias para la conversación; no constituye una decisión final ni una recomendación.
+5. Una experiencia personal no se presenta como recomendación universal.
+6. Una duda sin evidencia se convierte en pregunta, no en respuesta estimada.
+7. Las necesidades privadas no se explican en plenaria; se asignan a un canal.
+8. El seguimiento a siete días es autónomo y no obligatorio.
 
 ## Contenido expresamente podado
 

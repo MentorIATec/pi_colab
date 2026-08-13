@@ -252,3 +252,106 @@ diseño del taller, los materiales y el sitio.
   matrícula, muestra un estado discreto y puede eliminarse. Este ajuste sustituye
   el control opcional descrito en la ADR-017; la descarga continúa siendo el
   respaldo recomendado.
+
+## ADR-019 — Conservar una visión futura sin ampliar el alcance vigente
+
+- **Fecha:** 13 de agosto de 2026
+- **Estado:** Exploración documentada; no aceptada para implementación
+- **Contexto:** Se identificó la posibilidad de evolucionar el Pasaporte hacia un
+  journey adaptativo con tablero, copiloto basado en fuentes, comparadores,
+  seguimiento consentido y sesiones colaborativas mediante capacidades de
+  Cloudflare.
+- **Decisión:** La visión se conserva en `FUTURE_PRODUCT_VISION.md` para futuras
+  conversaciones institucionales. No modifica el sprint editorial y de marca ni
+  autoriza backend, cuentas, almacenamiento remoto, automatizaciones o IA.
+- **Consecuencia:** Cualquier componente de esa visión deberá pasar por una
+  decisión posterior de valor pedagógico, gobierno de contenido, privacidad,
+  titularidad, seguridad, mantenimiento y autorización institucional.
+
+## ADR-020 — Adoptar lenguaje neutro natural como regla editorial
+
+- **Fecha:** 13 de agosto de 2026
+- **Estado:** Aceptada
+- **Decisión:** Todo copy, prompt, material y componente utilizará lenguaje que no
+  presuponga género. Se privilegiará la segunda persona y construcciones
+  colectivas o no marcadas. No se utilizarán terminaciones artificiales en “-e”
+  ni desdoblamientos repetitivos como recurso automático de inclusión.
+- **Consecuencia:** Las revisiones editoriales deberán evaluar claridad, cercanía
+  y neutralidad de manera conjunta. Una formulación neutral que resulte
+  burocrática o distante deberá reescribirse.
+
+## ADR-021 — Adoptar una ruta pedagógica de doble dimensión
+
+- **Fecha:** 13 de agosto de 2026
+- **Estado:** Aceptada e implementada en la variante local
+- **Contexto:** Las iteraciones editoriales no hacían suficientemente visible la
+  diferencia entre construir el valor personal, formativo y profesional de una
+  experiencia internacional y confirmar la oferta, los requisitos y el proceso
+  para hacerla posible. Las preguntas también podían favorecer a quien ya llegaba
+  con una duda formulada o producir respuestas sin una función clara.
+- **Decisión:** `PEDAGOGICAL_ROUTE.md` se establece como referencia canónica. La
+  experiencia enlaza dos rutas —la experiencia que se quiere construir y lo que
+  necesita confirmarse para hacerla posible— mediante tres momentos y cinco
+  preguntas. La duda inicial se afina después de consultar la oferta sin crear un
+  sexto campo.
+- **Consecuencia:** La próxima implementación sustituirá los copys actuales por
+  las preguntas aprobadas, hará explícito el aporte de cada espacio de apoyo y
+  devolverá un resumen de propósito, prioridades, necesidad afinada y siguiente
+  paso. La herramienta seguirá abierta tanto a quien comienza desde cero como a
+  quien llega con una preferencia definida.
+
+## ADR-022 — Insertar una pausa de selección durante la exploración
+
+- **Fecha:** 13 de agosto de 2026
+- **Estado:** Aceptada e implementada en la variante local
+- **Contexto:** La ruta permitía abrir los recursos oficiales y registrar un
+  hallazgo, pero no detenía la navegación para reconocer qué elementos de la
+  oferta habían despertado interés. Esto dejaba la conversación demasiado
+  abstracta y dificultaba relacionar propósito, prioridades y requisitos con
+  referencias concretas.
+- **Decisión:** Durante el momento de exploración se solicita elegir y registrar
+  una o dos opciones que hayan llamado la atención. Es una pausa pedagógica, no
+  una sexta pregunta central: la segunda referencia es opcional y ambas pueden
+  corresponder a una universidad, programa o ciudad según la oferta consultada.
+- **Consecuencia:** Las opciones aparecen en el Pasaporte descargable y sirven
+  para conversar sobre coincidencias, diferencias y datos pendientes. No se
+  presentan como shortlist, recomendación, confirmación de viabilidad ni decisión
+  final.
+
+## ADR-023 — Adoptar Brújula Internacional y retirar la metáfora del Pasaporte
+
+- **Fecha:** 13 de agosto de 2026
+- **Estado:** Aceptada e implementada en la variante local
+- **Contexto:** “Mi Ruta Internacional” sugería un recorrido único y podía
+  confundirse con el entorno institucional de MiTec. “Pasaporte de Decisión” era
+  memorable, pero se confundía con un requisito migratorio real y prometía una
+  decisión final que la intervención no busca producir. “Antes del destino” se
+  descartó por depender de contexto implícito y resultar poco natural como nombre
+  independiente.
+- **Decisión:** La marca del sistema será **Brújula Internacional**, acompañada
+  por el descriptor “Acompañamiento para tu experiencia internacional”. El
+  instrumento principal se denomina **Guía de exploración**; el recurso técnico,
+  **Oferta y requisitos en MiTec**; y la salida portátil, **Resumen de
+  exploración**.
+- **Consecuencia:** La interfaz evita extender la metáfora con frases como
+  “encontrar el norte” o “trazar el rumbo”. Los nombres históricos se conservan
+  en auditorías y ADR anteriores. La ruta web `/pasaporte/` se mantiene
+  temporalmente para no romper enlaces existentes, pero deja de mostrarse como
+  nombre público.
+
+## ADR-024 — Integrar un hero editorial de trayectoria en construcción
+
+- **Fecha:** 13 de agosto de 2026
+- **Estado:** Aceptada e implementada en la variante local
+- **Contexto:** El activo 3D anterior recurría a globo, laptop y pasaporte y ya
+  no correspondía con la identidad pedagógica de Brújula Internacional. El hero
+  tipográfico dejaba además sin resolver la expresión visual del sistema.
+- **Decisión:** El landing incorpora una ilustración editorial en acuarela donde
+  una trayectoria internacional se dibuja gradualmente a partir de la
+  exploración académica. En escritorio funciona como lienzo de fondo con una
+  protección marfil para el copy; en pantallas pequeñas aparece después del
+  contenido mediante un recorte centrado en el estudiante y las conexiones.
+- **Consecuencia:** El render 3D se retira del cierre para mantener un solo
+  lenguaje visual. El PNG original permanece fuera del sitio y se publica una
+  versión WebP optimizada. No se añaden animaciones, parallax ni capas de iconos
+  sobre la ilustración.

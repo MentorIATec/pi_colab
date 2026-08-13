@@ -1,17 +1,17 @@
 import Link from "next/link";
 
 const navItems = [
-  ["Pasaporte", "/pasaporte"],
-  ["Guía MiTec", "/guia-mitec"],
+  ["Exploración", "/pasaporte"],
+  ["MiTec", "/guia-mitec"],
 ] as const;
 
 export function SiteHeader() {
   return (
     <header className="site-header no-print">
       <div className="shell header-inner">
-        <Link className="wordmark" href="/" aria-label="Mi Ruta Internacional, inicio">
-          <span className="wordmark-mark" aria-hidden="true">RI</span>
-          <span>Mi Ruta Internacional</span>
+        <Link className="wordmark" href="/" aria-label="Brújula Internacional, inicio">
+          <span className="wordmark-mark" aria-hidden="true">BI</span>
+          <span>Brújula Internacional</span>
         </Link>
         <nav aria-label="Recursos principales">
           {navItems.map(([label, href]) => (

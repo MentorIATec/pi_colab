@@ -20,7 +20,7 @@
 ### Estudiante
 
 - Decide qué información personal comparte.
-- Registra datos y fuentes en su Pasaporte.
+- Registra hallazgos y referencias en su Guía de exploración.
 - Formula preguntas y elige su siguiente paso.
 
 ## Guion por momentos
@@ -43,7 +43,21 @@
 
 ### Exploración guiada
 
-> No busquen de forma aleatoria ni se concentren en la foto del campus. Entren a MiTec, apliquen su primer filtro (por ejemplo, el idioma o el periodo de intercambio) y vean cómo cambia la lista. Anoten una opción candidata que cumpla con sus filtros e identifiquen qué información específica les falta confirmar de esa ficha de oportunidad.
+> No busquen de forma aleatoria ni se concentren sólo en la foto del campus.
+> Entren a MiTec, apliquen un primer criterio —por ejemplo, idioma, periodo o
+> área académica— y observen cómo cambia la oferta.
+
+### Pin de conversación durante la exploración
+
+> Antes de continuar, elijan una o dos opciones que les hayan llamado la
+> atención. No tienen que decidir hoy ni demostrar todavía que sean las opciones
+> definitivas. Anótenlas para conversar: ¿qué les interesó?, ¿qué coincide con
+> sus prioridades? y ¿qué necesitarían confirmar?
+
+La facilitación concede un momento breve para registrar las referencias. Si una
+persona ya llegó con una preferencia, se recomienda conservarla y añadir, cuando
+resulte útil, una segunda opción descubierta en la búsqueda. No se realiza un
+ranking ni se fuerza una comparación exhaustiva.
 
 ### Cierre
 
@@ -65,7 +79,7 @@ Al cierre, PI indica el canal correspondiente. No se improvisan respuestas.
 ## Señales de sobrecarga
 
 - El especialista comienza a explicar todas las modalidades.
-- El grupo abre buscadores y abandona el Pasaporte.
+- El grupo abre buscadores y abandona la Guía de exploración.
 - Se discuten destinos reales durante más de dos minutos.
 - La matriz se interpreta como ranking.
 - El grupo comparte datos sensibles para recibir una respuesta.
@@ -82,4 +96,3 @@ Antes del piloto, cada responsable debe leer el guion y marcar:
 - vocabulario no institucional;
 - preguntas que deben canalizarse; y
 - promesas que el taller no puede sostener.
-

@@ -21,6 +21,14 @@ const resources = [
       "Ubica la oferta, revisa requisitos y distingue la información confirmada de lo que todavía necesitas consultar.",
     tone: "sky",
   },
+  {
+    href: "/recursos",
+    eyebrow: "Exploración autónoma",
+    title: "Preguntas para investigar",
+    description:
+      "Profundiza en planes, investigación, rankings, ciudades y costos, o contrasta dos opciones con los mismos criterios.",
+    tone: "sand",
+  },
 ];
 
 export default function Home() {

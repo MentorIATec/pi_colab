@@ -3,6 +3,7 @@ import Link from "next/link";
 const navItems = [
   ["Exploración", "/pasaporte"],
   ["MiTec", "/guia-mitec"],
+  ["Recursos", "/recursos"],
 ] as const;
 
 export function SiteHeader() {

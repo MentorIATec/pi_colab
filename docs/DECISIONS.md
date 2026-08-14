@@ -355,3 +355,24 @@ diseño del taller, los materiales y el sitio.
   lenguaje visual. El PNG original permanece fuera del sitio y se publica una
   versión WebP optimizada. No se añaden animaciones, parallax ni capas de iconos
   sobre la ilustración.
+
+## ADR-025 — Mantener los recursos de exploración como módulo complementario
+
+- **Fecha:** 14 de agosto de 2026
+- **Estado:** Aceptada para prototipo y validación
+- **Contexto:** Las estructuras para investigar planes de estudio, investigación,
+  rankings, programas, ciudades y costos pueden enriquecer el trabajo autónomo,
+  pero integrarlas al recorrido principal ampliaría una sesión de 30 minutos que
+  ya tiene una ruta pedagógica consolidada.
+- **Decisión:** Se crea una página independiente de Recursos. La Guía de
+  exploración conserva su flujo y su PDF. Los recursos podrán utilizarse de
+  manera opcional cuando exista tiempo o después de la sesión. Comparar dos
+  universidades será una ruta dentro del banco, no un producto que lo sustituya.
+- **Decisión:** La primera versión producirá una ficha de hallazgo conceptual,
+  no un segundo PDF, una puntuación ni un ranking personal. La necesidad de una
+  descarga independiente se decidirá después de validar que el producto sea
+  distinto y útil.
+- **Consecuencia:** El sitio incorpora el acceso a Recursos sin añadir campos ni
+  pasos a la Guía principal. Las estructuras de búsqueda separan evidencia,
+  estimaciones e información pendiente y conservan a MiTec como fuente primaria
+  para datos institucionales variables.

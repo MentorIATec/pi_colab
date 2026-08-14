@@ -25,6 +25,7 @@ test("server-renders the final Spanish landing page", async () => {
   assert.match(html, /Brújula Internacional/);
   assert.match(html, /href="\/pasaporte\/?"/);
   assert.match(html, /href="\/guia-mitec\/?"/);
+  assert.match(html, /href="\/recursos\/?"/);
   assert.match(html, /Información oficial de PI/);
   assert.match(html, /tecmx\.sharepoint\.com/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -33,6 +34,7 @@ test("server-renders the final Spanish landing page", async () => {
 for (const [path, expected] of [
   ["/pasaporte", "Guía de exploración"],
   ["/guia-mitec", "Oferta y requisitos en MiTec"],
+  ["/recursos", "Preguntas para ampliar tu exploración"],
 ]) {
   test(`server-renders ${path}`, async () => {
   const response = await render(`${path}/`);
